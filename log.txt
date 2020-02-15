@@ -1,0 +1,23 @@
+commit f9d325f19195322ebc943fa5903df688d186faa1 (HEAD -> master)
+Author: vkhmara <khmaredevad@mail.ru>
+Date:   Sat Feb 15 18:23:47 2020 +0300
+
+    add task1\status.txt
+
+commit 9a134e99b3fc75c10a723367dc770ecc32b78647
+Author: vkhmara <khmaredevad@mail.ru>
+Date:   Sat Feb 15 18:21:40 2020 +0300
+
+    add .gitignore
+
+commit 729f60e7765e27013fa311037e5f21328a1711b1
+Author: vkhmara <khmaredevad@mail.ru>
+Date:   Tue Feb 11 22:35:52 2020 +0300
+
+    add .gitignore
+
+commit 12fdf6a9edf516c1ec6d1c6386528539b2d722f9
+Author: vkhmara <khmaredevad@mail.ru>
+Date:   Tue Feb 11 22:26:59 2020 +0300
+
+    add .gitignore
