@@ -1,0 +1,239 @@
+[
+    {
+        "id": 232,
+        "brand": "maybelline",
+        "name": "Maybelline Line Express Eyeliner",
+        "price": "7.29",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/4e88f928ad91c88e2ecb8596431ce799_ra,w158,h184_pa,w158,h184.png",
+        "product_link": "https://well.ca/products/maybelline-line-express-eyeliner_9738.html",
+        "website_link": "https://well.ca",
+        "description": "Maybelline Line Express Eyeliner's intense color formula + smart tip smudger makes this liner glide on smoothly and is easy to apply with just one stroke.Features: Creamy formula delivers intense colorContour smudger makes blending easyAll-day wearSafe for sensitive eyes and ophthalmologist-testedContact lens safe",
+        "rating": 4.5,
+        "category": "pencil",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:28:59.422Z",
+        "updated_at": "2017-12-23T20:51:31.255Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/232.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/232/original/open-uri20171223-4-1gco531?1514062291",
+        "product_colors": []
+    },
+    {
+        "id": 230,
+        "brand": "maybelline",
+        "name": "Maybelline Unstoppable Eyeliner",
+        "price": "8.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/bab89a9fe13b34235e0dd1f4f44c05cf_ra,w158,h184_pa,w158,h184.png",
+        "product_link": "https://well.ca/products/maybelline-unstoppable-eyeliner_3737.html",
+        "website_link": "https://well.ca",
+        "description": "Unstoppable Eyeliner allows ultra-smooth application for defined lines and eyes.\nIt is a self-sharpening mechanical pencil, and will hold your look in place all day long.\nWaterproof.\nOphthalmologist tested, contact lens safe for sensitive eyes.\n",
+        "rating": 4.3,
+        "category": "pencil",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:28:57.194Z",
+        "updated_at": "2017-12-23T20:51:30.858Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/230.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/230/original/open-uri20171223-4-1noqhmg?1514062290",
+        "product_colors": [
+            {
+                "hex_value": "#797B7D",
+                "colour_name": "Pewter "
+            },
+            {
+                "hex_value": "#736364",
+                "colour_name": "Onyx "
+            }
+        ]
+    },
+    {
+        "id": 225,
+        "brand": "maybelline",
+        "name": "Maybelline Color Show Kohl Liner",
+        "price": "5.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/c2fcd605bbf3941b521fb74bfa942ac6_ra,w158,h184_pa,w158,h184.png",
+        "product_link": "https://well.ca/products/maybelline-color-show-kohl-liner_101020.html",
+        "website_link": "https://well.ca",
+        "description": "Maybelline Color Show Kohl Liner is the hottest new way to create statement eyes!The brightest colors. The easiest glide. Creamy, rich color has never \nbeen this precise!",
+        "rating": null,
+        "category": "pencil",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:28:51.002Z",
+        "updated_at": "2017-12-23T20:51:29.742Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/225.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/225/original/open-uri20171223-4-77bvjo?1514062289",
+        "product_colors": [
+            {
+                "hex_value": "#574c7c",
+                "colour_name": "Vibrant Violet "
+            },
+            {
+                "hex_value": "#000000",
+                "colour_name": "Ultra Black "
+            },
+            {
+                "hex_value": "#00849d",
+                "colour_name": "Turquoise Flash "
+            },
+            {
+                "hex_value": "#837163",
+                "colour_name": "Sparkle Grey "
+            },
+            {
+                "hex_value": "#854f58",
+                "colour_name": "Marvelous Maroon "
+            },
+            {
+                "hex_value": "#008687",
+                "colour_name": "Edgy Emerald "
+            },
+            {
+                "hex_value": "#56403a",
+                "colour_name": "Chocolate Chip "
+            },
+            {
+                "hex_value": "#2e4064",
+                "colour_name": "Beauty Blue "
+            }
+        ]
+    },
+    {
+        "id": 221,
+        "brand": "maybelline",
+        "name": "Maybelline Eye Studio Master Graphic in Striking Black",
+        "price": "11.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/9c98f99f2033bb942286fa1bb32b4c51_ra,w158,h184_pa,w158,h184.png",
+        "product_link": "https://well.ca/products/maybelline-eye-studio-master-graphic_112723.html",
+        "website_link": "https://well.ca",
+        "description": "Eye Studio Master Graphic Liquid Liner from Maybelline New York. Love the graphic look? This genius eyeliner automatically draws the boldest line with the sharpest edge! Features:Automatically draw the boldest line with the sharpest edgePitch black finishUse the flat side for bold line. Use the sharp tip for the edges",
+        "rating": null,
+        "category": "liquid",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:28:44.845Z",
+        "updated_at": "2017-12-23T20:51:28.186Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/221.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/221/original/open-uri20171223-4-1v1tlhi?1514062288",
+        "product_colors": []
+    },
+    {
+        "id": 179,
+        "brand": "maybelline",
+        "name": "Maybelline EyeStudio Master Precise Ink Pen Eyeliner",
+        "price": "11.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/6edd2cadd1894a94f264ceb19f3d344b_ra,w158,h184_pa,w158,h184.png",
+        "product_link": "https://well.ca/products/maybelline-eyestudio-master-precise_40535.html",
+        "website_link": "https://well.ca",
+        "description": "Experience the new generation of liquid liner from Maybelline!              Ink technology keeps pigments super-saturatedSpring cap keeps the formula freshMost precise line for lasting intensity                                                    Safe for sensitive eyes and ophthalmologist-testedContact lens safeFor Best Results: 1. Start at inner corner of upper eye. Flare outward. 2. Create the sharpest design, uniquely your own.",
+        "rating": 4.0,
+        "category": "liquid",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:27:51.862Z",
+        "updated_at": "2017-12-23T20:51:16.524Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/179.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/179/original/open-uri20171223-4-1vi901o?1514062276",
+        "product_colors": []
+    },
+    {
+        "id": 177,
+        "brand": "maybelline",
+        "name": "Maybelline Line Stiletto Ultimate Precision Liquid Eyeliner",
+        "price": "10.29",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/350d6c6c2fa3add8ee40189cd19bfe0a_ra,w158,h184_pa,w158,h184.png",
+        "product_link": "https://well.ca/products/maybelline-line-stiletto-ultimate_17295.html",
+        "website_link": "https://well.ca",
+        "description": "Easily Creates Slender Lines\n\n    Rich, Even Color\n    All-Day Wear\n    Smooth Glide Felt Tip\n    Flexible tip guides on smoothly for the most precise control.\n    All-day wear up to 8 hours\n",
+        "rating": 4.0,
+        "category": "liquid",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:27:50.155Z",
+        "updated_at": "2017-12-23T20:51:16.164Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/177.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/177/original/open-uri20171223-4-p0eowt?1514062276",
+        "product_colors": [
+            {
+                "hex_value": "#4E2F2F",
+                "colour_name": "Brown Black "
+            },
+            {
+                "hex_value": "#000000",
+                "colour_name": "Blackest Black "
+            }
+        ]
+    },
+    {
+        "id": 172,
+        "brand": "maybelline",
+        "name": "Maybelline Liquid Eyeliner",
+        "price": "10.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/316d25ac5676470d83612b9391678b0d_ra,w158,h184_pa,w158,h184.jpeg",
+        "product_link": "https://well.ca/products/maybelline-liquid-eyeliner_3739.html",
+        "website_link": "https://well.ca",
+        "description": "\nWaterproof Liquid Eyeliner draws intense lining in an instant.\nIt glides on smoothly for even coverage.\nThe firm felt tip applicator allows easy control.\nWaterproof, all-day wear.\n",
+        "rating": 4.2,
+        "category": "liquid",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:27:44.166Z",
+        "updated_at": "2017-12-23T20:51:13.942Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/172.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/172/original/data?1514062273",
+        "product_colors": [
+            {
+                "hex_value": "#06090A",
+                "colour_name": "Black "
+            }
+        ]
+    },
+    {
+        "id": 170,
+        "brand": "maybelline",
+        "name": "Maybelline Eye Studio Lasting Drama Gel Eyeliner",
+        "price": "11.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/2054f702d243c286219e0330af836bf5_ra,w158,h184_pa,w158,h184.png",
+        "product_link": "https://well.ca/products/maybelline-eye-studio-lasting-drama_23247.html",
+        "website_link": "https://well.ca",
+        "description": "Maybelline Eye Studio Lasting Drama Gel Eyeliner gives you smudge-proof lines that are waterproof for 24 hours. Features:            Oil-free formula holds highly concentrated pigments in a clear gel baseSmudge-proof and waterproof for 24 hoursMost intense line for lasting drama                                                    Safe for sensitive eyes and ophthalmologist-testedContact lens safe\n\t\tRemoves easily with Expert Eyes® Moisturizing Eye Makeup Remover.Maybelline Eye Studio Lasting Drama Gel Eyeliner is one of our 10 Makeup Must Haves.  See the full list on The Well.  ",
+        "rating": 4.4,
+        "category": "liquid",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:27:42.507Z",
+        "updated_at": "2017-12-23T20:51:13.684Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/170.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/170/original/open-uri20171223-4-1hy3kmf?1514062273",
+        "product_colors": [
+            {
+                "hex_value": "#4A484B",
+                "colour_name": "Charcoal 954 "
+            },
+            {
+                "hex_value": "#60423B",
+                "colour_name": "Brown 952 "
+            },
+            {
+                "hex_value": "#000000",
+                "colour_name": "Blackest Black 950 "
+            }
+        ]
+    }
+]
