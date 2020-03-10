@@ -1,0 +1,3 @@
+lat and lng - lattitude and longtitude of place.
+formatted - expresses time values following ISO 8601 and value "day_length" in seconds.
+The response values are the times of sunrise, sunset, twilights and others.

@@ -1,0 +1,7 @@
+product_type - the type of makeup being searched for.
+product_tags - options each product could be tagged with.
+price_less_than - will return a list of products with price less than indicated number.
+rating_greater_than - will return a list of products with a rating more than indicated number.
+brand - brand of the product.
+
+The response values are the description of goods.

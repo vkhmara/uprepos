@@ -1,0 +1,342 @@
+[
+    {
+        "id": 258,
+        "brand": "milani",
+        "name": "Milani Supreme Kohl Kajal Eyeliner",
+        "price": "8.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/0e085149c3fbedd0aa6661c6b3d143cf_ra,w158,h184_pa,w158,h184.jpg",
+        "product_link": "https://well.ca/products/milani-supreme-kohl-kajal-eyeliner_108625.html",
+        "website_link": "https://well.ca",
+        "description": "Milani Supreme Kohl Kajal Eyeliner is perfect for tightlining, waterlining or adding definition to the upper lid - there’s nothing this one-stroke wonder can’t do.  With this sleek gold multi-tasker, you can achieve three distinct looks: 1.To keep it natural, line the upper lid and inner rim.  2. For added drama, thicken the line and extend the tip.  3. Feeling bold? Ring the entire eye. Available in a single stellar shade (Blackest Black), the waterproof formula is laced with hydrating, nourishing ingredients. Features:Smooth-glide application creates three looks from precise to boldSuper long-wear & smudge-proofRetractable tip, no sharpening requiredIdeal for use in waterlineWaterproofApplication: One Product Three Looks: Supremely Natural Supremely Dramatic Supremely Bold (will provide eye images for this section) Apply to upper lashline and inner rim for a natural, precise look. For added intensity, slightly thicken the line and extend the tip. For supreme drama, connect through the lower lashline.Ingredients: Cyclopentasiloxane, Hydrogenated Olive Oil Stearyl Esters, Polyethylene, Polybutene, Silica Silylate, Euphorbia Cerifera (Candelilla) Wax, Octyldodecanol, Cera Microcristallina (Microcrystalline Wax) , Theobroma Grandiflorum (Cocoa) Seed Butter, Sodium Ascorbyl Phosphate, Pentaerythrityl Tetra-di-t-Butyl Hydroxyhydrocinnamate, Tocopherol, Sodium Hyaluronate, Zinc Gluconate, Magnesium Aspartate, Water (Aqua), Copper Gluconate, Mica, Iron Oxide (CI 77499), Black 2 (CI 77266), Ferric Ferrocyanide (CI 77510). ",
+        "rating": 5.0,
+        "category": "pencil",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:29:39.644Z",
+        "updated_at": "2017-12-23T21:08:07.140Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/258.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/258/original/data?1514063287",
+        "product_colors": []
+    },
+    {
+        "id": 257,
+        "brand": "annabelle",
+        "name": "Annabelle Retractable Eyeliner",
+        "price": "9.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/d579558b853bc13b92292106cfc2ed15_ra,w158,h184_pa,w158,h184.png",
+        "product_link": "https://well.ca/products/annabelle-retractable-eyeliner_97807.html",
+        "website_link": "https://well.ca",
+        "description": "This Annabelle Retractable Eyeliner with integrated sharpener comes in rich, intense colours and \na creamy texture that glides easily. Waterproof and long-lasting formula. \n                                                                        \n                                                               \nOphthalmologist Tested. Waterproof. 12h wear.                           \n                                                                      A \nmust have for a decadent dose of resistant colour!Shade Range: ",
+        "rating": 5.0,
+        "category": "pencil",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:29:37.128Z",
+        "updated_at": "2017-12-23T21:08:06.984Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/257.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/257/original/open-uri20171223-4-1i0r7ni?1514063286",
+        "product_colors": [
+            {
+                "hex_value": "#572e12",
+                "colour_name": "Bronze Age "
+            },
+            {
+                "hex_value": "#66603c",
+                "colour_name": "Peacock "
+            }
+        ]
+    },
+    {
+        "id": 253,
+        "brand": "annabelle",
+        "name": "Annabelle Smudgeliner ",
+        "price": "8.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/541b71a4d119bdae25eb1c3690bacf68_ra,w158,h184_pa,w158,h184.jpg",
+        "product_link": "https://well.ca/products/annabelle-smudgeliner_97765.html",
+        "website_link": "https://well.ca",
+        "description": "The new definition of smokey eye: edgy, soft, smudgeable! Annabelle Smudgeliners \nhave a superior long-lasting formula offering rich colour pay-off that \nglides on smoothly to create a defined line, or can be easily blended \nwith the built-in smudger tip to achieve a smokey, sultry look.\nIts excellent coverage means you can really get creative!\nContains natural oxidants and Vitamin E. Mineral-oil free. \nOphthalmologist tested.Shade Range: ",
+        "rating": 5.0,
+        "category": "pencil",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:29:31.183Z",
+        "updated_at": "2017-12-23T21:08:05.809Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/253.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/253/original/data?1514063285",
+        "product_colors": [
+            {
+                "hex_value": "#146849",
+                "colour_name": "Rich Chocolate "
+            }
+        ]
+    },
+    {
+        "id": 251,
+        "brand": "wet n wild",
+        "name": "Wet n Wild Sharpen Up! Dual Pencil Sharpener",
+        "price": "1.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/52cb90513c65303b9ac96b0bb8f5e74c_ra,w158,h184_pa,w158,h184.png",
+        "product_link": "https://well.ca/products/wet-n-wild-sharpen-up-dual-pencil_114005.html",
+        "website_link": "https://well.ca",
+        "description": "Specially-designed dual pencil sharpener includes razor-sharp blades to keep pencils of all sizes perfectly-shaped.Features:Dual-purpose sharpener for pencils of all sizesRazor-sharp bladesCompact for easy traveling Directions: Insert pencil into appropriate hole depending on size of pencil and twist.",
+        "rating": 5.0,
+        "category": "pencil",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:29:28.262Z",
+        "updated_at": "2017-12-23T21:08:05.457Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/251.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/251/original/open-uri20171223-4-1ky7y5m?1514063285",
+        "product_colors": []
+    },
+    {
+        "id": 248,
+        "brand": "pacifica",
+        "name": "Pacifica Natural Eye Pencil",
+        "price": "16.0",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/b2c0bdd88398baadd69b710d27893ca2_ra,w158,h184_pa,w158,h184.jpeg",
+        "product_link": "https://well.ca/products/pacifica-natural-eye-pencil_94342.html",
+        "website_link": "https://well.ca",
+        "description": "Pacifica Natural Eye Pencil is a waterproof, buttery smooth eye pencil that glides on easily to avoid pulling on the delicate eye area. Color glides on and stays put for those perfectly defined eyes. Whether it be a very fine line or the ever glamorous cat-eye, these pencils provide the right amount of saturated color to make your eyes pop.Formulated without: Animal ingredients (including carmine, beeswax and \nlanolin), animal testing, FD&C colors, mineral oil, parabens, \nphthalates, petroleum, propylene glycol, SLS, gluten, peanut oil and \nother ingredients you don’t want on your skin.Ingredients: Gun Metal (pewter) - hydrogenated simmondsia chinensis seed oil, mica, caprylic / capric triglycerides, hydrogenated vegetable oil, simmondsia chinensis seed oil, butyrospermum parkii butter, titanium dioxide CI 77891, canola oil, sclerocarya birrea seed oil, iron oxide CI 77499, euphorbia cerifera cera, glyceryl caprylate, copernicia cerifera cera, tocopherol, helianthus annuus seed oil, ascorbyl palmitateBare (Nude) - titanium dioxide CI 77891, hydrogenated simmondsia chinensis seed oil, simmondsia chinensis seed oil, caprylic / capric triglycerides, hydrogenated vegetable oil, mica, butyrospermum parkii butter, canola oil, sclerocarya birrea seed oil, iron oxide CI 77492, euphorbia cerifera cera, glyceryl caprylate, copernicia cerifera cera, iron oxide CI 77491, iron oxide CI 77499, tocopherol, ascorbyl palmitate.Fringe (brown) - hydrogenated simmondsia chinensis seed oil, iron oxide CI 77499, mica, iron oxide CI 77491, iron oxide CI 77492, hydrogenated vegetable oil, caprylic / capric triglyceride, simmondsia chinensis seed oil, butyrospermum parkii butter, canola oil, sclerocarya birrea seed oil, candelilla cerifera cera, glyceryl caprylate, copernicia cerifera cera, tocopherol, helianthus annuus seed oil, ascorbyl palmitate.Jet (black) - iron oxide CI 77499, hydrogenated simmondsia chinenesis seed oil, caprylic / capric triglyceride, simmondsia chinenesis seed oil, hydrogenated vegetable oil, butyrospermum parkii butter, sclerocarya birrea seed oil, mica, candelilla cerifera cera, glyceryl caprylate, copernicia cerifera cera, tocopherol, helianthus annuus seed oil, ascorbyl palmitate",
+        "rating": 5.0,
+        "category": "pencil",
+        "product_type": "eyeliner",
+        "tag_list": [
+            "Gluten Free",
+            "Vegan",
+            "Natural"
+        ],
+        "created_at": "2016-10-01T18:29:24.754Z",
+        "updated_at": "2017-12-23T21:08:04.906Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/248.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/248/original/data?1514063284",
+        "product_colors": []
+    },
+    {
+        "id": 243,
+        "brand": "physicians formula",
+        "name": "Physicians Formula Shimmer Strips Eye Enhancing Eyeliner Trio ",
+        "price": "14.79",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/b5c7acadc4e472a567e428979d68357c_ra,w158,h184_pa,w158,h184.jpeg",
+        "product_link": "https://well.ca/products/physicians-formula-shimmer-strips_70958.html",
+        "website_link": "https://well.ca",
+        "description": "Warm Nude Eyeliner Trio!  The perfect set of earth tone eyeliners to create a Warm Nude look for ANY eye color! Long-wearing, water-resistant and smudge-resistant formula for 24-Hour wear.Tips and Tricks for a Smoky Eye: Apply Eyeliner at the base of upper and lower lash line. Layer shades together for endless looks!Ingredients: Cyclopentasiloxane. Trimethylsiloxysilicate. Polyethylene. Ozokerite. \nLauroyl Lysine. Synthetic Beeswax. Octyldodecanol. Disteardimonium \nHectorite. Propylene Carbonate.  Lecithin. Ascorbyl Palmitate. Citric \nAcid. Tocopherol.  May Contain: Iron Oxides. Titanium Dioxide. Mica. \nAluminum Powder. Bismuth Oxychloride. Black 2. Blue 1 Lake. Carmine. \nChromium Hydroxide Green. Chromium Oxide Greens. Ferric Ammonium \nFerrocyanide. Ferric Ferrocyanide. Manganese Violet. Silica. Tin Oxide. \nUltramarines. Yellow 5 Lake.Hypoallergenic. Fragrance-free. Paraben-Free. Gluten Free.  \nDermatologist approved. Safe for sensitive eyes and contact lens \nwearers.",
+        "rating": 5.0,
+        "category": "pencil",
+        "product_type": "eyeliner",
+        "tag_list": [
+            "Gluten Free"
+        ],
+        "created_at": "2016-10-01T18:29:14.986Z",
+        "updated_at": "2017-12-23T20:51:33.744Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/243.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/243/original/data?1514062293",
+        "product_colors": []
+    },
+    {
+        "id": 242,
+        "brand": "l'oreal",
+        "name": "L'Oreal Paris Infallible Silkissime Eyeliner",
+        "price": "11.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/a132f78e0b9e4aa4cca37c9f05267897_ra,w158,h184_pa,w158,h184.jpeg",
+        "product_link": "https://well.ca/products/loreal-paris-infallible-silkissime_96632.html",
+        "website_link": "https://well.ca",
+        "description": "\n                    L'Oréal Paris introduces Silkissime™ by \nInfallible® Eyeliner. The formula glides on like silk for a soft and \nluxurious line with up to 16H of intensity.Features:\n\nRich, silky formulaSmudge-resistant, up to 16H wearOphthalmologist testedSuitable for sensitive eyes and contact lens wearers\n                ",
+        "rating": 5.0,
+        "category": "pencil",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:29:13.117Z",
+        "updated_at": "2017-12-23T20:51:33.338Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/242.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/242/original/data?1514062293",
+        "product_colors": [
+            {
+                "hex_value": "#2F939E",
+                "colour_name": "True Teal "
+            },
+            {
+                "hex_value": "#7F4195",
+                "colour_name": "Pure Purple "
+            },
+            {
+                "hex_value": "#242A5F",
+                "colour_name": "Plum "
+            },
+            {
+                "hex_value": "#D99A85",
+                "colour_name": "Highlighter "
+            },
+            {
+                "hex_value": "#2A61AC",
+                "colour_name": "Cobalt Blue "
+            },
+            {
+                "hex_value": "#3C393A",
+                "colour_name": "Charcoal "
+            },
+            {
+                "hex_value": "#000000",
+                "colour_name": "Black "
+            }
+        ]
+    },
+    {
+        "id": 238,
+        "brand": "physicians formula",
+        "name": "Physicians Formula Shimmer Strips Eye Enhancing Eyeliner Trio",
+        "price": "14.79",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/4ce7e1ce460841dfc5f42c29221cf5c1_ra,w158,h184_pa,w158,h184.jpeg",
+        "product_link": "https://well.ca/products/physicians-formula-shimmer-strips_61188.html",
+        "website_link": "https://well.ca",
+        "description": "Shimmer Strips Custom Eye Enhancing Eyeliner Trio is the perfect set of three eyeliners to enhance your eye colour and provide glamorous definition! Long-wearing, water-resistant and smudge-resistant formula for 24-Hour wear.Directions for Use: Apply eyeliner at the base of upper lashes. Layer shades together for endless looks. For more defined eyes, apply along lower lash line as well.Ingredients: Cyclopentasiloxane. Trimethylsiloxysilicate. Polyethylene. Ozokerite. Lauroyl Lysine. Synthetic Beeswax. Octyldodecanol. Disteardimonium Hectorite. Propylene Carbonate. Lecithin. Ascorbyl Palmitate. Citric Acid. Tocopherol. May Contain: Iron Oxides. Titanium Dioxide. Mica. Aluminum Powder. Bismuth Oxychloride. Black 2. Blue 1 Lake. Carmine. Chromium Hydroxide Green. Chromium Oxide Greens. Ferric Ammonium Ferrocyanide. Ferric Ferrocyanide. Manganese Violet. Silica. Tin Oxide. Ultramarines. Yellow 5 Lake.Hypoallergenic. Fragrance free. Paraben free. Dermatologist approved. Safe for sensitive eyes and contact lens wearers.",
+        "rating": 5.0,
+        "category": "pencil",
+        "product_type": "eyeliner",
+        "tag_list": [
+            "Gluten Free"
+        ],
+        "created_at": "2016-10-01T18:29:05.433Z",
+        "updated_at": "2017-12-23T21:08:04.790Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/238.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/238/original/data?1514063284",
+        "product_colors": []
+    },
+    {
+        "id": 203,
+        "brand": "annabelle",
+        "name": "Annabelle EyeInk2 Mistake Proof Eyeliner + Corrector",
+        "price": "10.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/8ca9c5677e8b27321069490cc08b3d46_ra,w158,h184_pa,w158,h184.png",
+        "product_link": "https://well.ca/products/annabelle-eyeink2-mistake-proof_108750.html",
+        "website_link": "https://well.ca",
+        "description": "\n        Uneven line? No need to whine! This liner's fine felt tip is \ndesigned for ultimate precision and is the perfect tool to achieve a \nnatural or dramatic look. To correct smudges or unevenness, just flip \nthe pen around to reveal a magic corrector to erase those little \nmistakes as though they never happened! Eyeliner's Key features:\nGlossy formulaFast dryingLong lasting up to 10H+WaterproofSmudgeproof Corrector's Key features:\nGentle and non-greasy formulaRemoves long-wearing and waterproof makeupPerfect for on-the-go touch-ups!\n    ",
+        "rating": 5.0,
+        "category": "liquid",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:28:22.972Z",
+        "updated_at": "2017-12-23T20:51:20.247Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/203.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/203/original/open-uri20171223-4-1an3piy?1514062280",
+        "product_colors": [
+            {
+                "hex_value": "#513E38",
+                "colour_name": "Brown "
+            },
+            {
+                "hex_value": "#000000",
+                "colour_name": "Black "
+            }
+        ]
+    },
+    {
+        "id": 201,
+        "brand": "marcelle",
+        "name": "Marcelle Kajal Kohl Eyeliner Blackest Black",
+        "price": "11.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/bb7368014d95f21e66c99b0f4d5bf91b_ra,w158,h184_pa,w158,h184.jpg",
+        "product_link": "https://well.ca/products/marcelle-kajal-kohl-eyeliner_100255.html",
+        "website_link": "https://well.ca",
+        "description": "\n        Marcelle Kajal Kohl Eyeliner is offered in an ancient \ntraditional chunky format with a long pointy tip that allows for an \neasy, extra-precise application. Plus, it’s waterproof and proven to \nlast at least 6 hours on the waterline. This antioxidant-enriched, \npreservative-free liner is sure to give a daring, seductive look that \nlasts and lasts.Hypo-allergenic and perfume free. Paraben free. Tested under ophthalmologic control.    ",
+        "rating": 5.0,
+        "category": "liquid",
+        "product_type": "eyeliner",
+        "tag_list": [
+            "Canadian",
+            "Gluten Free"
+        ],
+        "created_at": "2016-10-01T18:28:21.112Z",
+        "updated_at": "2017-12-23T20:51:24.613Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/201.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/201/original/data?1514062284",
+        "product_colors": []
+    },
+    {
+        "id": 192,
+        "brand": "physicians formula",
+        "name": "Physicians Formula Shimmer Strips Kohl Kajal Eyeliner Trio ",
+        "price": "14.79",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/ac56e10c3ae7d7ec6af4c09ac868831b_ra,w158,h184_pa,w158,h184.jpeg",
+        "product_link": "https://well.ca/products/physicians-formula-shimmer-strips_90002.html",
+        "website_link": "https://well.ca",
+        "description": "Physicians Formula's intense and richly pigmented eyeliners are now perfectly paired to create a Nude Look.  Specially developed to line the inner rim of the eyelid, this unique eyeliner form contains a high concentration of pigments for dramatic definition that glides-on effortlessly.Directions: Apply Eyeliner at the base of upper lashes and on inside of lower eye rim for ultra-dramatic definition. Layer shades together for endless looks. Hypoallergenic. Fragrance Free. Paraben Free. Gluten Free. Dermatologist approved. Safe for Sensitive Eyes and Contact Wearers. Ingredients: Hydrogenated Polyisobutene, Beeswax, Caprylic/Capric Glycerides, Synthetic Fluorphlogopite, Silica, Ozokerite, Hydrogenated Coco-Glycerides, Copernicia Cerifera (Carnauba) Wax, Jojoba Esters, Microcrystalline Wax, Aluminum Calcium Sodium Silicate, Dimethicone, Polybutene, Alumina Magnesium Metasilicate, Bisabolol, Calcium Sodium Borosilicate, Caprylyl Glycol, Cetyl Dimethicone, Disteardimonium Hectorite, Panthenyl Ethyl Ether, Tin Oxide, Titanium/Titanium Dioxide, Tocopheryl Acetate, Triethoxycaprylylsilane. May Contain: Aluminum Powder, Bismuth Oxychloride, Carmine, Chromium Oxide Greens, Copper Powder, Ferric Ammonium Ferrocyanide, Ferric Ferrocyanide, Iron Oxides, Manganese Violet, Mica, Titanium Dioxide, Ultramarines, Yellow 5 Lake ",
+        "rating": 5.0,
+        "category": "liquid",
+        "product_type": "eyeliner",
+        "tag_list": [
+            "Gluten Free"
+        ],
+        "created_at": "2016-10-01T18:28:09.888Z",
+        "updated_at": "2017-12-23T20:51:21.808Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/192.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/192/original/data?1514062281",
+        "product_colors": []
+    },
+    {
+        "id": 189,
+        "brand": "physicians formula",
+        "name": "Physicians Formula Shimmer Strips Kohl Kajal Eyeliner Trio",
+        "price": "14.79",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/98c26c4923f92c11e36f7dbc28e800a9_ra,w158,h184_pa,w158,h184.jpeg",
+        "product_link": "https://well.ca/products/physicians-formula-shimmer-strips_70971.html",
+        "website_link": "https://well.ca",
+        "description": "Physicians Formula Shimmer Strips Kohl Kajal Eyeliner is a Highly \npigmented eyeliner trio that delivers rich color to create a Nude Look \nfor ANY eye color.Features:   Versatile eyeliner for dramatic definition and inner eye rim intensity     Super- smooth gliding texture makes defining eyes effortless  100% Waterproof wearDirections: Apply eyeliner at the base of upper lashes and on inside of lower eye \nrim for ultra-dramatic definition.  Layer shades together for endless \nlooks.Ingredients: Hydrogenated Polyisobutene, Beeswax, Caprylic/Capric Glycerides, Silica,\n Ozokerite, Hydrogenated Coco-Glycerides, Copernicia Cerifera (Carnauba)\n Wax, Jojoba Esters, Microcrystalline Wax, Dimethicone, Polybutene, \nAlumina Magnesium Metasilicate, Bisabolol, Caprylyl Glycol, Cetyl \nDimethicone, Disteardimonium Hectorite, Panthenyl Ethyl Ether, \nTocopheryl Acetate, Triethoxycaprylylsilane  May Contain:  Aluminum, \nAluminum Calcium Sodium Silicate, Aluminum Powder, Bismuth Oxychloride, \nCalcium Sodium Borosilicate, Carmine, Chromium Oxide Greens, Ferric \nAmmonium Ferrocyanide, Ferric Ferrocyanide, Iron Oxides, Manganese \nViolet, Mica, Synthetic Fluorphlogopite, Tin Oxide, Titanium Dioxide, \nTitanium/Titanium Dioxide, Ultramarines, Yellow 5Hypoallergenic. Fragrance-free. Paraben-Free. Gluten Free.  \nDermatologist approved. Safe for sensitive eyes and contact lens \nwearers.",
+        "rating": 5.0,
+        "category": "liquid",
+        "product_type": "eyeliner",
+        "tag_list": [
+            "Gluten Free"
+        ],
+        "created_at": "2016-10-01T18:28:05.122Z",
+        "updated_at": "2017-12-23T20:51:21.487Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/189.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/189/original/data?1514062281",
+        "product_colors": []
+    },
+    {
+        "id": 183,
+        "brand": "e.l.f.",
+        "name": "e.l.f. Intense Ink Eyeliner",
+        "price": "3.99",
+        "price_sign": null,
+        "currency": null,
+        "image_link": "https://d3t32hsnjxo7q6.cloudfront.net/i/805d4c650b7c29c004f7f48d3dc96cb2_ra,w158,h184_pa,w158,h184.jpg",
+        "product_link": "https://well.ca/products/elf-intense-ink-eyeliner_117825.html",
+        "website_link": "https://well.ca",
+        "description": "e.l.f. Intense Ink Eyeliner quick-dry formula instantly enhances the lash line with rich and long-lasting colour. The felt tip pen allows you to create a sleek or bold line with complete precision. It glides on smoothly without smudging, feathering, or running! How To Use: Apply colour as close to the lash line as possible. For a thin line, use just the point of the pen tip, or slant the pen along the side for a thicker, bolder line Ingredients: Water (Aqua), Styrene/Acrylates/Ammonium Methacrylate Copolymer, Polysorbate 20, Ethyheyl Palmitate, PEG-40 Hydrogenated Castor Oil, Xanthan Gum, Benzyl Alcohol, Methylchloroisothiazolinone. MAY CONTAIN: DC Black #2 (CI 77266). ",
+        "rating": 5.0,
+        "category": "liquid",
+        "product_type": "eyeliner",
+        "tag_list": [],
+        "created_at": "2016-10-01T18:27:55.066Z",
+        "updated_at": "2017-12-23T20:51:17.832Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/183.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/183/original/data?1514062277",
+        "product_colors": []
+    }
+]

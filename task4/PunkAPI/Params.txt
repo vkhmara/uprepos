@@ -1,0 +1,5 @@
+abv_gt - goods with ABV greater than the supplied number
+beer_name - name of beer
+ids - list of IDs
+
+The response values are the description of beer

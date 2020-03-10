@@ -1,0 +1,143 @@
+[
+    {
+        "id": 1044,
+        "brand": "boosh",
+        "name": "Lipstick",
+        "price": "26.0",
+        "price_sign": "$",
+        "currency": "CAD",
+        "image_link": "https://cdn.shopify.com/s/files/1/1016/3243/products/LIPBALM_LID_grande.jpg?v=1496848378",
+        "product_link": "https://www.boosh.ca/collections/all",
+        "website_link": "https://www.boosh.ca/",
+        "description": "All of our products are free from lead and heavy metals, parabens, phthalates, artificial colourants, and synthetic fragrances.  Boosh lipstick glides on smoothly for clean & protective SPF coverage. They are filled with hydrating oils and butters to preserve and enhance your lips natural surface. Organic sweet orange oil gives a light and cheerful scent.",
+        "rating": null,
+        "category": "lipstick",
+        "product_type": "lipstick",
+        "tag_list": [
+            "Organic",
+            "Chemical Free"
+        ],
+        "created_at": "2018-07-08T17:32:28.088Z",
+        "updated_at": "2018-09-02T22:52:06.669Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/1044.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/001/044/original/data?1531071233",
+        "product_colors": [
+            {
+                "hex_value": "#9D3F47",
+                "colour_name": "Ruby"
+            },
+            {
+                "hex_value": "#C79289",
+                "colour_name": "Nova"
+            },
+            {
+                "hex_value": "#8F6065",
+                "colour_name": "Luna"
+            },
+            {
+                "hex_value": "#F8D7D6",
+                "colour_name": "Lip Plumping Balm"
+            },
+            {
+                "hex_value": "#C86775",
+                "colour_name": "Leah"
+            },
+            {
+                "hex_value": "#8D5C58",
+                "colour_name": "Kylie"
+            },
+            {
+                "hex_value": "#BB8A88",
+                "colour_name": "Dusty rose"
+            },
+            {
+                "hex_value": "#BC88A5",
+                "colour_name": "Emmy"
+            },
+            {
+                "hex_value": "#875672",
+                "colour_name": "Brie"
+            },
+            {
+                "hex_value": "#573F53",
+                "colour_name": "Kat"
+            },
+            {
+                "hex_value": "#AF2257",
+                "colour_name": "Dahlia"
+            },
+            {
+                "hex_value": "#C6727C",
+                "colour_name": "Ellie"
+            },
+            {
+                "hex_value": "#B37072",
+                "colour_name": "Rosie"
+            },
+            {
+                "hex_value": "#B6636F",
+                "colour_name": "Bobbie"
+            },
+            {
+                "hex_value": "#CB4975",
+                "colour_name": "Babs"
+            }
+        ]
+    },
+    {
+        "id": 1030,
+        "brand": "penny lane organics",
+        "name": "Lip Gloss",
+        "price": "0.0",
+        "price_sign": "$",
+        "currency": "USD",
+        "image_link": "https://www.purpicks.com/wp-content/uploads/csm/sunset-bronze-pennylaneorganics1.jpg",
+        "product_link": "https://www.purpicks.com/product/penny-lane-organics-lip-gloss/",
+        "website_link": "https://purpicks.com/",
+        "description": "For fuller healthier lips! Long lasting colour! This colour is a good choice for any skin tone. It can be made lighter by wiping some off after application.Please note that our Vitamin E is extracted from non-GMO soy bean oil and therefore is gluten-free.",
+        "rating": null,
+        "category": "lip_gloss",
+        "product_type": "lipstick",
+        "tag_list": [
+            "Gluten Free",
+            "Chemical Free",
+            "Vegan",
+            "CertClean",
+            "purpicks"
+        ],
+        "created_at": "2018-06-30T19:19:31.534Z",
+        "updated_at": "2018-09-02T22:52:06.618Z",
+        "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/1030.json",
+        "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/001/030/original/open-uri20180630-4-ucbwbt?1530390380",
+        "product_colors": [
+            {
+                "hex_value": "#8E2432",
+                "colour_name": "Tropical Fuschia"
+            },
+            {
+                "hex_value": "#511617",
+                "colour_name": "Sweet Cherry"
+            },
+            {
+                "hex_value": "#783F30",
+                "colour_name": "Sunset Bronze"
+            },
+            {
+                "hex_value": "#B05665",
+                "colour_name": "Pink Shimmer"
+            },
+            {
+                "hex_value": "#6F2633",
+                "colour_name": "Pearl Pink"
+            },
+            {
+                "hex_value": "#4F1314",
+                "colour_name": "Fiery Red"
+            },
+            {
+                "hex_value": "#2F1513",
+                "colour_name": "Black Cherry"
+            }
+        ]
+    }
+]
