@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <servlet>
+        <servlet-name>StatusServlet</servlet-name>
+        <servlet-class>StatusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StatusServlet</servlet-name>
+        <url-pattern>/status</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetServlet</servlet-name>
+        <servlet-class>GetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetServlet</servlet-name>
+        <url-pattern>/get</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StaticPageServlet</servlet-name>
+        <servlet-class>StaticPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StaticPageServlet</servlet-name>
+        <url-pattern>/page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CheckServlet</servlet-name>
+        <servlet-class>CheckServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckServlet</servlet-name>
+        <url-pattern>/check</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Test1Servlet</servlet-name>
+        <servlet-class>Test1Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Test1Servlet</servlet-name>
+        <url-pattern>/test1</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Test2Servlet</servlet-name>
+        <servlet-class>Test2Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Test2Servlet</servlet-name>
+        <url-pattern>/test2</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>FilterInfo</filter-name>
+        <filter-class>FilterInfo</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterInfo</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+</web-app>
