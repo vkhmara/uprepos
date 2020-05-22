@@ -23,7 +23,6 @@ public class PostsContainer {
     static class EditInfo {
         String description;
         List<String> hashTags;
-        String photoLink;
     }
 
     public static int size() {
@@ -196,10 +195,6 @@ public class PostsContainer {
 
         if (!edit.hashTags.isEmpty()) {
             edPost.setHashTags(edit.hashTags);
-        }
-
-        if (!edit.photoLink.equals("")) {
-            edPost.setPhotoLink(edit.photoLink);
         }
 
         if (!edPost.validatePost()) {
