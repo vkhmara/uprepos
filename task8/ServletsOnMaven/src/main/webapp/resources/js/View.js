@@ -20,8 +20,8 @@ class Post {
 	}
 
 	hasLike(idOfUser) {
-	    return this.likes.indexOf(idOfUser) !== -1;
-    }
+		return this.likes.indexOf(idOfUser) !== -1;
+	}
 
 	countOfLikes() {
 		return this.likes.length;
@@ -57,139 +57,139 @@ class FilterParams {
 
 class PostContainer {
 
-    constructor(posts = []) {
-        this._posts = posts;
-    }
+	constructor(posts = []) {
+		this._posts = posts;
+	}
 
-    get posts() {
-        return this._posts;
-    }
+	get posts() {
+		return this._posts;
+	}
 
-    set posts(arr) {
-        this._posts = arr;
-    }
+	set posts(arr) {
+		this._posts = arr;
+	}
 
-    liesInInterval(date, dateInterval) {
-        return dateInterval == null || (dateInterval.left <= date && date <= dateInterval.right);
-    }
+	liesInInterval(date, dateInterval) {
+		return dateInterval == null || (dateInterval.left <= date && date <= dateInterval.right);
+	}
 
-    hasAnyTag(hashTagsOfPost, hashTags) {
-        return hashTags.length === 0
-            || hashTagsOfPost.some(hashTagOfPost => hashTags.includes(hashTagOfPost));
-    }
+	hasAnyTag(hashTagsOfPost, hashTags) {
+		return hashTags.length === 0
+			|| hashTagsOfPost.some(hashTagOfPost => hashTags.includes(hashTagOfPost));
+	}
 
-    compDates(x, y) {
-        return y.createdAt - x.createdAt;
-    }
+	compDates(x, y) {
+		return y.createdAt - x.createdAt;
+	}
 
-    isTag(str) {
-        return str[0] === '#';
-    }
+	isTag(str) {
+		return str[0] === '#';
+	}
 
-    isString(obj) {
-        return typeof obj == 'string';
-    }
+	isString(obj) {
+		return typeof obj == 'string';
+	}
 
-    rightDate(date) {
-        return date.getHours() >= 0 && date.getHours() <= 23 &&
-            date.getMinutes() >= 0 && date.getMinutes() <= 59 &&
-            date.getSeconds() >= 0 && date.getSeconds() <= 59;
-    }
+	rightDate(date) {
+		return date.getHours() >= 0 && date.getHours() <= 23 &&
+			date.getMinutes() >= 0 && date.getMinutes() <= 59 &&
+			date.getSeconds() >= 0 && date.getSeconds() <= 59;
+	}
 
-    copyPost(post) {
-        let copy = new Post();
-        Object.assign(copy, post);
-        return copy;
-    }
+	copyPost(post) {
+		let copy = new Post();
+		Object.assign(copy, post);
+		return copy;
+	}
 
-    getPostsByFilter(filterConfig) {
-        if (filterConfig == null) {
-            return this.posts;
-        }
-        return this.posts.filter(element =>
-            (!filterConfig.author || element.author === filterConfig.author) &&
-            (!filterConfig.dateInterval || this.liesInInterval(element.createdAt, filterConfig.dateInterval)) &&
-            (!filterConfig.hashTags || this.hasAnyTag(element.hashTags, filterConfig.hashTags))
-        );
-    }
+	getPostsByFilter(filterConfig) {
+		if (filterConfig == null) {
+			return this.posts;
+		}
+		return this.posts.filter(element =>
+			(!filterConfig.author || element.author === filterConfig.author) &&
+			(!filterConfig.dateInterval || this.liesInInterval(element.createdAt, filterConfig.dateInterval)) &&
+			(!filterConfig.hashTags || this.hasAnyTag(element.hashTags, filterConfig.hashTags))
+		);
+	}
 
-    getPostsByFilterFromInterval(filterConfig, skip = 0, count = 10) {
-        if (skip < 0 || count <= 0) {
-            return [];
-        }
-        let postsByFilter = this.getPostsByFilter(filterConfig).sort(this.compDates);
-        return postsByFilter.slice(skip, skip + count);
-    }
+	getPostsByFilterFromInterval(filterConfig, skip = 0, count = 10) {
+		if (skip < 0 || count <= 0) {
+			return [];
+		}
+		let postsByFilter = this.getPostsByFilter(filterConfig).sort(this.compDates);
+		return postsByFilter.slice(skip, skip + count);
+	}
 
-    getPostsFromInterval(skip = 0, count = 10) {
-        return this.getPostsByFilterFromInterval(null, skip, count);
-    }
+	getPostsFromInterval(skip = 0, count = 10) {
+		return this.getPostsByFilterFromInterval(null, skip, count);
+	}
 
-    getPost(ID) {
-        return this.posts.find(item => item.id === ID);
-    }
+	getPost(ID) {
+		return this.posts.find(item => item.id === ID);
+	}
 
-    validatePost(somePost) {
-        return this.isString(somePost.description) &&
-            somePost.description.trim().length > 0 && somePost.description.length < 200 &&
-            this.isString(somePost.author) && somePost.author.length > 0 &&
-            somePost.hashTags.every(this.isTag) &&
-            somePost.hashTags.every(this.isString) && somePost.likes.every(this.isString) &&
-            somePost.createdAt instanceof Date && this.rightDate(somePost.createdAt);
-    }
+	validatePost(somePost) {
+		return this.isString(somePost.description) &&
+			somePost.description.trim().length > 0 && somePost.description.length < 200 &&
+			this.isString(somePost.author) && somePost.author.length > 0 &&
+			somePost.hashTags.every(this.isTag) &&
+			somePost.hashTags.every(this.isString) && somePost.likes.every(this.isString) &&
+			somePost.createdAt instanceof Date && this.rightDate(somePost.createdAt);
+	}
 
-    addPost(somePost) {
-        if (!this.validatePost(somePost)) {
-            return false;
-        }
-        this.posts.push(this.copyPost(somePost));
-        return true;
-    }
+	addPost(somePost) {
+		if (!this.validatePost(somePost)) {
+			return false;
+		}
+		this.posts.push(this.copyPost(somePost));
+		return true;
+	}
 
-    editPost(ID, edit) {
-        let index = this.posts.findIndex(item => item.id === ID);
+	editPost(ID, edit) {
+		let index = this.posts.findIndex(item => item.id === ID);
 
-        if (index === -1) {
-            return false;
-        }
+		if (index === -1) {
+			return false;
+		}
 
-        let edPost = this.copyPost(this.posts[index]);
+		let edPost = this.copyPost(this.posts[index]);
 
-        if (edit.description) {
-            edPost.description = edit.description.trim();
-        }
+		if (edit.description) {
+			edPost.description = edit.description.trim();
+		}
 
-        if (edit.hashTags) {
-            edPost.hashTags = [];
-            edit.hashTags.forEach(item => edPost.hashTags.push(item));
-        }
+		if (edit.hashTags) {
+			edPost.hashTags = [];
+			edit.hashTags.forEach(item => edPost.hashTags.push(item));
+		}
 
-        if (!this.validatePost(edPost)) {
-            return false;
-        }
+		if (!this.validatePost(edPost)) {
+			return false;
+		}
 
-        this.posts[index] = edPost;
-        return true;
-    }
+		this.posts[index] = edPost;
+		return true;
+	}
 
-    removePost(ID) {
-        let index = this.posts.findIndex(item => item.id === ID);
+	removePost(ID) {
+		let index = this.posts.findIndex(item => item.id === ID);
 
-        if (index === -1) {
-            return false;
-        }
+		if (index === -1) {
+			return false;
+		}
 
-        this.posts.splice(index, 1);
-        return true;
-    }
+		this.posts.splice(index, 1);
+		return true;
+	}
 
-    takeLike(ID, idOfAuthorOfLike) {
-        return this.getPost(ID).takeLike(idOfAuthorOfLike);
-    }
+	takeLike(ID, idOfAuthorOfLike) {
+		return this.getPost(ID).takeLike(idOfAuthorOfLike);
+	}
 
-    size() {
-        return this.posts.length;
-    }
+	size() {
+		return this.posts.length;
+	}
 }
 
 class User {
@@ -197,20 +197,62 @@ class User {
 		this.username = username;
 		this.password = password;
 	}
-
-	copyUser(user) {
-		this.username = user.username;
-		this.password = user.password;
-	}
 }
 
+let users = new Map();
+let idsOfPosts = [];
+let postsArray = [];
+let idsOfCurrentFeed = [];
+
 /*(function fullingStorage() {
+	postsArray = [
+		new Post("1", "incredible2", new Date('2020-06-24T22:47:41'), "Hello"),
+		new Post("2", "incredible6", new Date('2020-09-22T06:18:04'), "Hello"),
+		new Post("3", "incredible12", new Date('2020-02-08T01:05:05'), "Hello"),
+		new Post("4", "incredible20", new Date('2020-01-14T14:55:11'), "Hello"),
+		new Post("5", "incredible30", new Date('2020-05-09T14:24:51'), "Hello"),
+		new Post("6", "incredible42", new Date('2020-12-28T20:21:22'), "Helloo"),
+		new Post("7", "incredible3", new Date('2020-10-26T11:06:47'), "Hello"),
+		new Post("8", "incredible19", new Date('2020-07-13T19:47:52'), "Hello, it's me."),
+		new Post("9", "incredible37", new Date('2020-10-29T02:51:23'), "Hello"),
+		new Post("10", "incredible4", new Date('2020-05-08T07:21:44'), "Hello"),
+		new Post("11", "incredible26", new Date('2020-10-17T22:44:47'), "Hello"),
+		new Post("12", "incredible50", new Date('2020-11-09T21:23:19'), "Hello"),
+		new Post("13", "incredible23", new Date('2020-01-16T14:35:16'), "Hello"),
+		new Post("14", "incredible51", new Date('2020-05-09T14:40:46'), "Hello"),
+		new Post("15", "incredible28", new Date('2020-11-02T02:45:26'), "Hello"),
+		new Post("16", "incredible7", new Date('2020-09-05T21:06:50'), "Hello"),
+		new Post("17", "incredible41", new Date('2020-01-03T12:23:09'), "Hello"),
+		new Post("18", "incredible24", new Date('2020-05-12T08:46:20'), "Hello"),
+		new Post("19", "incredible9", new Date('2020-06-14T02:39:24'), "Hello"),
+		new Post("20", "incredible49", new Date('2020-06-20T18:38:58'), "Hello"),
+		new Post("21", "incredible4", new Date('2020-08-16T00:27:58'), "Hello182", ["#hello"]),
+		new Post("22", "incredible4", new Date('2020-10-13T00:22:08'), "Hello707", ["#hello"]),
+		new Post("23", "incredible4", new Date('2020-11-10T11:57:09'), "Hello46"),
+		new Post("24", "incredible4", new Date('2020-12-07T10:14:22'), "Hello111"),
+		new Post("25", "incredible4", new Date('2020-12-15T02:38:40'), "Hello481"),
+		new Post("26", "incredible4", new Date('2020-01-05T17:41:38'), "Hello211"),
+		new Post("27", "incredible4", new Date('2020-06-07T13:53:03'), "Hello154", ["#hello", "#hai"]),
+		new Post("28", "incredible4", new Date('2020-01-23T12:15:11'), "Hello564"),
+		new Post("29", "incredible4", new Date('2020-07-05T20:30:55'), "Hello931"),
+		new Post("30", "incredible4", new Date('2020-04-25T00:08:16'), "Hello990"),
+		new Post("31", "incredible5", new Date('2020-07-10T09:20:03'), "Hello633"),
+		new Post("32", "incredible5", new Date('2020-09-27T18:55:54'), "Hello468"),
+		new Post("33", "incredible5", new Date('2020-12-27T12:39:01'), "Hello530", ["#hai"]),
+		new Post("34", "incredible5", new Date('2020-12-20T18:54:23'), "Hello927", ["#ni hao"]),
+		new Post("35", "incredible5", new Date('2020-07-19T11:25:13'), "Hello549"),
+		new Post("36", "incredible5", new Date('2020-10-26T04:03:24'), "Hello616"),
+		new Post("37", "incredible5", new Date('2020-12-23T17:20:30'), "Hello682"),
+		new Post("38", "incredible5", new Date('2020-07-28T00:46:26'), "Hello208"),
+		new Post("39", "incredible5", new Date('2020-10-22T02:59:26'), "Hello940"),
+		new Post("40", "incredible5", new Date('2020-03-15T21:40:13'), "Hello999")
+	];
 	postsArray.forEach(item => {
 		idsOfPosts.push(item.id);
 		localStorage.setItem("Post with id=" + item.id, JSON.stringify(item));
 	});
 	localStorage.setItem("IDs of posts", JSON.stringify(idsOfPosts));
-	postsArray.forEach(x=>{
+	postsArray.forEach(x => {
 		if (!users.has(x.author)) {
 			users.set(x.author, new User(x.author, x.author));
 		}
@@ -220,11 +262,6 @@ class User {
 	localStorage.setItem("Count of posts in feed", "10");
 	localStorage.setItem("IDs of current feed", JSON.stringify(idsOfPosts));
 })();*/
-
-let users = new Map();
-let idsOfPosts = [];
-let postsArray = [];
-let idsOfCurrentFeed = [];
 
 function loadPostFromStorage(id) {
 	let post = JSON.parse(localStorage.getItem("Post with id=" + id));
@@ -279,11 +316,11 @@ class ViewPosts {
 
      <div class="date_and_time">
          <div class="date">
-           ${this.getDateForPost(date)}
+           ${ViewPosts.getDateForPost(date)}
          </div>
 
          <div class="time">
-           ${this.getTimeForPost(date)}
+           ${ViewPosts.getTimeForPost(date)}
          </div>
       </div>
 
@@ -296,7 +333,7 @@ class ViewPosts {
    </textarea>
 
    <div class="tags">
-     ${this.hashTagsInNewLines(post.hashTags)}
+     ${ViewPosts.hashTagsInNewLines(post.hashTags)}
    </div>
 
    <div class="likes">
@@ -309,11 +346,11 @@ class ViewPosts {
 		let likeButton = document.createElement("button");
 		likeButton.className = "imglike";
 		if (this.user !== null && post.hasLike(this.user.username)) {
-            likeButton.innerHTML = `<img src="resources/images/Like.jpg" width="100%" height="100%">`;
-        }
+			likeButton.innerHTML = `<img src="resources/images/Like.jpg" width="100%" height="100%">`;
+		}
 		else {
-		    likeButton.innerHTML=`<img src="resources/images/No like.png" width="100%" height="100%">`;
-        }
+			likeButton.innerHTML=`<img src="resources/images/No like.png" width="100%" height="100%">`;
+		}
 		likeButton.addEventListener("click", ()=>{
 			if (this.user == null) {
 				document.body.appendChild(this.unableLikeWindow);
@@ -325,10 +362,10 @@ class ViewPosts {
 			let countOfLikesField = likesField.getElementsByClassName("count_of_likes")[0];
 			countOfLikesField.innerHTML = parseInt(countOfLikesField.innerHTML) + c + "";
 			if (c === 1) {
-			    likeButton.getElementsByTagName("img")[0].setAttribute("src", "resources/images/Like.jpg");
-            } else {
-			    likeButton.getElementsByTagName("img")[0].setAttribute("src", "resources/images/No like.png");
-            }
+				likeButton.getElementsByTagName("img")[0].setAttribute("src", "resources/images/Like.jpg");
+			} else {
+				likeButton.getElementsByTagName("img")[0].setAttribute("src", "resources/images/No like.png");
+			}
 		});
 		newPost.getElementsByClassName("likes")[0].appendChild(likeButton);
 
@@ -372,7 +409,7 @@ class ViewPosts {
 		localStorage.setItem("IDs of current feed", JSON.stringify(idsOfCurrentFeed));
 	}
 
-	getDateForPost(date) {
+	static getDateForPost(date) {
 		let str = "";
 		let num = date.getDate();
 		if (num < 10) {
@@ -387,7 +424,7 @@ class ViewPosts {
 		return str + date.getFullYear();
 	}
 
-	getTimeForPost(date) {
+	static getTimeForPost(date) {
 		let str = "";
 		let num = date.getHours();
 		if (num <= 9) {
@@ -401,17 +438,17 @@ class ViewPosts {
 		return str + date.getMinutes();
 	}
 
-	hashTagsInNewLines(hashTags) {
+	static hashTagsInNewLines(hashTags) {
 		if (hashTags.length !== 0) {
 			return hashTags.reduce((acc, curr) => acc + curr + "<br>", "");
 		}
 		return "";
 	}
 
-    initDeletePostWindow() {
-        this.deletePostWindow = document.createElement("div");
-        this.deletePostWindow.className = "delete_post_window";
-        this.deletePostWindow.innerHTML = `
+	initDeletePostWindow() {
+		this.deletePostWindow = document.createElement("div");
+		this.deletePostWindow.className = "delete_post_window";
+		this.deletePostWindow.innerHTML = `
 <div class="header_of_window">Warning</div>
 <div class="info_delete_post">
 Are you sure?
@@ -424,28 +461,28 @@ YES
 NO
 </button>
 </div>`;
-        this.deletePostWindow
-            .getElementsByTagName("button")[0]
-            .addEventListener("click", ()=>{
-                this.feed.removeChild(this.postToRemove);
-                document.body.removeChild(this.deletePostWindow);
-                this.count -= 1;
-                let id = this.postToRemove.getAttribute("id");
-                this.posts.removePost(id);
-                allPosts.removePost(id);
-                if (this.count === 0) {
-                    this.feed.appendChild(this.noPostsInscription);
-                }
-                localStorage.removeItem("Post with id=" + id);
-                idsOfCurrentFeed = idsOfCurrentFeed.filter(item=>item !== id);
-                localStorage.setItem("IDs of current feed", JSON.stringify(idsOfCurrentFeed));
-                idsOfPosts = idsOfPosts.filter(item=>item !== id);
-                localStorage.setItem("IDs of posts", JSON.stringify(idsOfPosts));
-            });
-        this.deletePostWindow
-            .getElementsByTagName("button")[1]
-            .addEventListener("click", ()=>document.body.removeChild(this.deletePostWindow));
-    }
+		this.deletePostWindow
+			.getElementsByTagName("button")[0]
+			.addEventListener("click", ()=>{
+				this.feed.removeChild(this.postToRemove);
+				document.body.removeChild(this.deletePostWindow);
+				this.count -= 1;
+				let id = this.postToRemove.getAttribute("id");
+				this.posts.removePost(id);
+				allPosts.removePost(id);
+				if (this.count === 0) {
+					this.feed.appendChild(this.noPostsInscription);
+				}
+				localStorage.removeItem("Post with id=" + id);
+				idsOfCurrentFeed = idsOfCurrentFeed.filter(item=>item !== id);
+				localStorage.setItem("IDs of current feed", JSON.stringify(idsOfCurrentFeed));
+				idsOfPosts = idsOfPosts.filter(item=>item !== id);
+				localStorage.setItem("IDs of posts", JSON.stringify(idsOfPosts));
+			});
+		this.deletePostWindow
+			.getElementsByTagName("button")[1]
+			.addEventListener("click", ()=>document.body.removeChild(this.deletePostWindow));
+	}
 
 	initEditPostWindow() {
 		this.editPostWindow = document.createElement("div");
@@ -489,25 +526,25 @@ Edit the hashTags
 		});
 	}
 
-    initElems() {
-        this.initFrame();
-        this.initMainButton();
-        this.initSearchButton();
-        this.initPublishPostButton();
-        this.initLoginButton();
-        this.initLogoutButton();
-        this.initSignupButton();
-        this.initNextPostsButton();
-        this.initNoPostsInscription();
-        this.initLoginWindow();
-        this.initErrorWindow();
-        this.initUnableLikeWindow();
-        this.initDeletePostWindow();
-        this.initSignupWindow();
-        this.initSearchPostsWindow();
-        this.initPublishPostWindow();
-        this.initEditPostWindow();
-    }
+	initElems() {
+		this.initFrame();
+		this.initMainButton();
+		this.initSearchButton();
+		this.initPublishPostButton();
+		this.initLoginButton();
+		this.initLogoutButton();
+		this.initSignupButton();
+		this.initNextPostsButton();
+		this.initNoPostsInscription();
+		this.initLoginWindow();
+		this.initErrorWindow();
+		this.initUnableLikeWindow();
+		this.initDeletePostWindow();
+		this.initSignupWindow();
+		this.initSearchPostsWindow();
+		this.initPublishPostWindow();
+		this.initEditPostWindow();
+	}
 
 	initErrorWindow() {
 		this.errorWindow = document.createElement("div");
@@ -757,8 +794,8 @@ Input the interval:
 				let filterParams = new FilterParams(author, new DateInterval(new Date(startDate), new Date(endDate)), tags);
 				if (!filterParams.validate()) {
 					this.viewErrorWindow("Incorrect data", function(){
-					    view.viewSearchPostsWindow();
-                    });
+						view.viewSearchPostsWindow();
+					});
 					return;
 				}
 				this.changeContainer(allPosts.getPostsByFilter(filterParams));
@@ -908,20 +945,20 @@ OK
 	}
 
 	viewMainPage() {
-	    this.changeContainer(postsArray);
+		this.changeContainer(postsArray);
 		this.viewMainFeed();
 	}
 
 	viewMainFeed() {
-        this.feed.innerHTML = "";
-        this.count = 0;
-        if (this.posts.size() === 0) {
-            this.feed.appendChild(this.noPostsInscription);
-        } else {
-            this.feed.appendChild(this.nextPostsButton);
-            this.viewNextPosts();
-        }
-    }
+		this.feed.innerHTML = "";
+		this.count = 0;
+		if (this.posts.size() === 0) {
+			this.feed.appendChild(this.noPostsInscription);
+		} else {
+			this.feed.appendChild(this.nextPostsButton);
+			this.viewNextPosts();
+		}
+	}
 
 	viewNextPosts() {
 		let postsToView = this.posts.getPostsFromInterval(this.count, 10);
@@ -946,11 +983,11 @@ OK
 	}
 
 	viewSearchPostsWindow() {
-	    this.feed.innerHTML = "";
-	    this.feed.appendChild(this.searchPostsWindow);
-    }
+		this.feed.innerHTML = "";
+		this.feed.appendChild(this.searchPostsWindow);
+	}
 
-    viewSignupWindow() {
+	viewSignupWindow() {
 		this.feed.innerHTML = "";
 		this.feed.appendChild(this.signupWindow);
 	}
