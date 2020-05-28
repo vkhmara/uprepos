@@ -1,7 +1,5 @@
 package ServletsOnPosts;
 
-import Posts.Post;
-import Posts.PostsContainer;
 import Posts.UtilClasses.DateInterval;
 import Posts.UtilClasses.FilterParams;
 import Posts.UtilClasses.JSONDecorator;
