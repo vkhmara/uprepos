@@ -79,7 +79,7 @@ public class TweetsServlet extends HttpServlet {
                 likes = Arrays.asList(likesArray);
             }
             String photoLink = req.getParameter("photoLink");
-            Post post = new Post(id, author, createdAt, description, hashTags, likes, photoLink);
+            Post post = new Post(id, author, createdAt, description, hashTags, likes);
             if (!PostsContainer.addPost(post)) {
                 writer.print(NOT_ADDED_POST_MESSAGE);
             }

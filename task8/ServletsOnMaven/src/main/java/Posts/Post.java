@@ -1,7 +1,6 @@
 package Posts;
 
 import ServletsOnPosts.JSONDecorator;
-import com.google.gson.Gson;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,17 +14,15 @@ public class Post {
     private String description;
     private List<String> hashTags = new ArrayList<>();
     private List<String> likes = new ArrayList<>();
-    private String photoLink;
 
     public Post(String id, String author, LocalDateTime createdAt, String description,
-                List<String> hashTags, List<String> likes, String photoLink) {
+                List<String> hashTags, List<String> likes) {
         this.setId(id);
         this.setAuthor(author);
         this.setCreatedAt(createdAt);
         this.setDescription(description);
         this.setHashTags(hashTags);
         this.setLikes(likes);
-        this.setPhotoLink(photoLink);
     }
 
     public Post(Post post) {
@@ -35,7 +32,6 @@ public class Post {
         this.setDescription(post.description);
         this.setHashTags(post.hashTags);
         this.setLikes(post.likes);
-        this.setPhotoLink(post.photoLink);
     }
 
     public boolean validatePost() {
@@ -86,14 +82,6 @@ public class Post {
         }
     }
 
-    public String getPhotoLink() {
-        return photoLink;
-    }
-
-    public void setPhotoLink(String photoLink) {
-        this.photoLink = photoLink;
-    }
-
     public List<String> getLikes() {
         return likes;
     }
@@ -112,8 +100,7 @@ public class Post {
                 ", createdAt=" + createdAt +
                 ", description='" + description + '\'' +
                 ", hashTags=" + hashTags +
-                ", likes=" + likes +
-                ", photoLink='" + photoLink + '\'' +
+                ", likes=" + likes + '\'' +
                 '}';
     }
 
