@@ -1,7 +1,7 @@
 use mydb;
-select name from users
-where idOfUser in (
-select idOfUser from posts
- group by idOfUser
- having count(idOfUser) > 3
+select username from users
+where username in (
+select username from posts
+ group by username
+ having count(username) > 3
  );

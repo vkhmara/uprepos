@@ -1,2 +1,2 @@
 use mydb;
-select idOfUser, name from users;
+select username from users;
