@@ -1,6 +1,6 @@
 package Posts;
 
-import Posts.UtilClasses.JSONDecorator;
+import UtilClasses.JSONDecorator;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

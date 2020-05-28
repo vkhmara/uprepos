@@ -1,7 +1,8 @@
 package ServletsOnPosts;
 
 import Posts.*;
-import Posts.UtilClasses.*;
+import Posts.JSONDecorator;
+import UtilClasses.*;
 import WorkWithDB.WorkWithDB;
 
 import javax.annotation.Resource;

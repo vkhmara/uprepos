@@ -1,7 +1,7 @@
 package ServletsOnPosts;
 
-import Posts.UtilClasses.EditInfo;
-import Posts.UtilClasses.JSONDecorator;
+import UtilClasses.EditInfo;
+import UtilClasses.JSONDecorator;
 import WorkWithDB.WorkWithDB;
 import org.apache.commons.io.IOUtils;
 
