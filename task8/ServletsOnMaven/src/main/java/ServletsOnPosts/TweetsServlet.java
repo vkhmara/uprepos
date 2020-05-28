@@ -1,95 +1,77 @@
 package ServletsOnPosts;
 
 import Posts.*;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import Posts.UtilClasses.*;
+import WorkWithDB.WorkWithDB;
 import org.apache.commons.io.IOUtils;
 
-import javax.servlet.ServletContext;
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class TweetsServlet extends HttpServlet {
 
-    public static final String NO_POST_MESSAGE = "No post with such id.";
-    public static final String NOT_ADDED_POST_MESSAGE = "Post was not added.";
+    @Resource(name = "jdbc/mydb")
+    private DataSource dataSource;
 
-    @Override
-    public void init() throws ServletException {
-        String jsonText;
-        ServletContext sc = getServletContext();
-        try (InputStream stm = sc.getResourceAsStream("posts.json")) {
-            jsonText = IOUtils.toString(stm, StandardCharsets.UTF_8);
-            Post[] postsFromFile = JSONDecorator.getGson().fromJson(jsonText, Post[].class);
-            PostsContainer.addAll(Arrays.asList(postsFromFile));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    public static final String NO_POST_MESSAGE = "No post with such id.";
+    public static final String NO_ID = "No id.";
+    public static final String NOT_ADDED_POST_MESSAGE = "Post was not added.";
+    public static final String DELETED = "Post was deleted";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         if (id == null) {
+            sendErrorMessage(resp.getWriter(), NO_ID);
             return;
         }
         PrintWriter writer = resp.getWriter();
-        Post foundPost = PostsContainer.getPostByID(id);
+        Post foundPost = WorkWithDB.getPostById(id, dataSource);
         if (foundPost == null) {
-           writer.print(NO_POST_MESSAGE);
+            sendErrorMessage(writer, NO_POST_MESSAGE);
         } else {
             resp.setContentType("application/json");
             writer.print(foundPost.toJson());
         }
+    }
 
+    static class InfoForPostRequest {
+        String id;
+        String author;
+        String description;
+        String createdAt;
+        String[] hashTags;
+        String[] likes;
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
+        String body = IOUtils.toString(req.getReader());
+        InfoForPostRequest postRequest = JSONDecorator.getGson().fromJson(body, InfoForPostRequest.class);
         try {
-            String id = req.getParameter("id");
-            String author = req.getParameter("author");
-            LocalDateTime createdAt = LocalDateTime.parse(req.getParameter("createdAt"));
-            String description = req.getParameter("description");
-            String[] hashTagsArray = req.getParameterValues("hashTags");
-            List<String> hashTags;
-            if (hashTagsArray == null) {
-                hashTags = new ArrayList<>();
-            }
-            else {
-                hashTags = Arrays.asList(hashTagsArray);
-            }
-            String[] likesArray = req.getParameterValues("likes");
-            List<String> likes;
-            if (likesArray == null) {
-                likes = new ArrayList<>();
-            }
-            else {
-                likes = Arrays.asList(likesArray);
-            }
-            String photoLink = req.getParameter("photoLink");
-            Post post = new Post(id, author, createdAt, description, hashTags, likes);
-            if (!PostsContainer.addPost(post)) {
-                writer.print(NOT_ADDED_POST_MESSAGE);
-            }
-            else {
-                writer.print("Post was added.\n");
+            LocalDateTime createdAt = LocalDateTime.parse(postRequest.createdAt.substring(0, postRequest.createdAt.length() - 5));
+            createdAt = createdAt.plusHours(3);
+            List<String> hashTags = new ArrayList<>(Arrays.asList(postRequest.hashTags));
+            hashTags.removeIf(item -> item.equals(""));
+
+            Post post = new Post(postRequest.id, postRequest.author, createdAt, postRequest.description, hashTags, new ArrayList<>());
+            if (!post.validatePost()) {
+                writer.print(JSONDecorator.toJson(NOT_ADDED_POST_MESSAGE));
+            } else {
+                WorkWithDB.addPost(post, dataSource);
                 writer.print(post.toJson());
             }
-        }
-        catch (Exception e) {
-            writer.print("Exception");
+        } catch (Exception e) {
+            sendErrorMessage(writer, "Exception");
         }
     }
 
@@ -100,13 +82,12 @@ public class TweetsServlet extends HttpServlet {
             return;
         }
         PrintWriter writer = resp.getWriter();
-        Post foundPost = PostsContainer.getPostByID(id);
-        if (foundPost == null) {
-            writer.print(NO_POST_MESSAGE);
-        } else {
-            PostsContainer.removePost(id);
-            resp.setContentType("application/json");
-            writer.print(foundPost.toJson());
-        }
+        WorkWithDB.deletePost(id, dataSource);
+        resp.setContentType("application/json");
+        resp.getWriter().write(JSONDecorator.toJson(DELETED));
+    }
+
+    private void sendErrorMessage(PrintWriter writer, String textOfError) {
+        writer.write(JSONDecorator.toJson(textOfError));
     }
 }
