@@ -1,15 +1,8 @@
-class User {
-	constructor(username, password) {
-		this.username = username;
-		this.password = password;
-	}
-}
-
 function fullLS() {
 	localStorage.setItem("Count of posts on feed", JSON.stringify("10"));
 	localStorage.setItem("maxSize", JSON.stringify("41"));
 	localStorage.setItem("filterParams", JSON.stringify(null));
-	localStorage.setItem("Current user", JSON.stringify(null));
+	localStorage.setItem("username", JSON.stringify(null));
 }
 
 class ViewPosts {
@@ -22,13 +15,7 @@ class ViewPosts {
 		}
 		this.maxSize = parseInt(JSON.parse(localStorage.getItem("maxSize")));
 		this.count = parseInt(JSON.parse(localStorage.getItem("Count of posts on feed")));
-		let user = JSON.parse(localStorage.getItem("Current user"));
-		if (user == null) {
-			this.user = null;
-		} else {
-			this.user = new User(user.username, user.password);
-		}
-		this.newUser = new User(null, null);
+		this.user = JSON.parse(localStorage.getItem("username"));
 		this.initElems();
 		this.viewHeader();
 		this.viewLastFeed();
@@ -81,7 +68,7 @@ class ViewPosts {
 
 		let likeButton = document.createElement("button");
 		likeButton.className = "imglike";
-		if (this.user !== null && post.hasLike(this.user.username)) {
+		if (this.user !== null && post.hasLike(this.user)) {
 			likeButton.innerHTML = `<img src="resources/images/Like.jpg" width="100%" height="100%">`;
 		} else {
 			likeButton.innerHTML = `<img src="resources/images/No like.png" width="100%" height="100%">`;
@@ -94,7 +81,7 @@ class ViewPosts {
 			let likesField = likeButton.parentElement;
 			let id = likesField.parentElement.getAttribute("id");
 			let c;
-			await this.takeLike(id, this.user.username).then(data => c = data);
+			await this.takeLike(id, this.user).then(data => c = data);
 			let countOfLikesField = likesField.getElementsByClassName("count_of_likes")[0];
 			countOfLikesField.innerHTML = parseInt(countOfLikesField.innerHTML) + c + "";
 			if (c === 1) {
@@ -343,16 +330,17 @@ Input the password
 			let fields = this.loginWindow.getElementsByTagName("input");
 			let login = fields[0].value;
 			let password = fields[1].value;
-			if (login === "") {
+			if (login === "" || password === "") {
 				this.viewErrorWindow("The login or password field is empty. Try again", function () {
 					view.viewWindowToLogin();
 				});
 				fields[0].value = fields[1].value = "";
 				return;
 			}
-			let realPassword = "";
-			await sendGetRequest("/users", "username", login).then(data => realPassword = data);
-			if (realPassword !== password) {
+			let mess = "";
+			await sendPostRequest("/login", {"username":login, "password":window.btoa(password)})
+				.then(data => mess = data);
+			if (mess !== "Success") {
 				this.viewErrorWindow("Incorrect login or password. Try again", function () {
 					view.viewWindowToLogin();
 				});
@@ -360,7 +348,7 @@ Input the password
 				return;
 			} else {
 				this.feed.innerHTML = "";
-				this.user = new User(login, password);
+				this.user = login;
 				localStorage.setItem("Current user", JSON.stringify(this.user));
 			}
 			fields[0].value = fields[1].value = "";
@@ -389,6 +377,7 @@ Input the password
 		this.logoutButton.addEventListener("click", () => {
 			this.user = null;
 			localStorage.setItem("Current user", JSON.stringify(this.user));
+			sendGetRequest("/logout");
 			this.viewHeader();
 			let postsOfFeed = this.feed.getElementsByClassName("post");
 			for (let i = 0; i < postsOfFeed.length; i++) {
@@ -592,14 +581,15 @@ Input the interval:
 							view.viewSignupWindow();
 						});
 					} else {
-						let exists;
-						await sendGetRequest("/users", "username", value).then(data => exists = JSON.parse(data) !== null);
-						if (exists) {
+						let mess;
+						await sendGetRequest("/signup", "username", value)
+							.then(data => mess = data);
+						if (mess !== "No such user") {
 							this.viewErrorWindow("There is a user with the same login", function () {
 								view.viewSignupWindow();
 							});
 						} else {
-							this.newUser.username = value;
+							this.newUser = value;
 							this.signupWindow.getElementsByTagName("h")[0].innerHTML = "Input the password (6-20 chars)";
 							this.signupWindow.getElementsByTagName("input")[0].setAttribute("type", "password");
 							this.levelOfSignup += 1;
@@ -613,20 +603,21 @@ Input the interval:
 							view.viewSignupWindow();
 						});
 					} else {
-						this.newUser.password = value;
+						this.newPassword = window.btoa(value);
 						this.signupWindow.getElementsByTagName("h")[0].innerHTML = "Input the password again";
 						this.levelOfSignup += 1;
 					}
 					break;
 				}
 				case 2: {
-					if (this.newUser.password !== value) {
+					if (this.newPassword !== window.btoa(value)) {
 						this.viewErrorWindow("Passwords are not equal", function () {
 							view.viewSignupWindow();
 						});
 					} else {
-						await sendPostRequest("/users", this.newUser);
-						this.user = new User(this.newUser.username, this.newUser.password);
+						await sendPostRequest("/signup", {username:this.newUser, password:this.newPassword});
+						this.newPassword = null;
+						this.user = this.newUser;
 						localStorage.setItem("Current user", JSON.stringify(this.user));
 						this.feed.removeChild(this.signupWindow);
 						this.viewHeader();
@@ -702,7 +693,7 @@ OK
 			this.leftBlock.appendChild(this.publishPostButton);
 			this.rightBlock.innerHTML = `
 				<span class="profile_name">
-					${this.user.username}
+					${this.user}
 				</span>`;
 			this.rightBlock.appendChild(this.logoutButton);
 		}

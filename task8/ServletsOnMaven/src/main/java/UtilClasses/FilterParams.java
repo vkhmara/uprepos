@@ -1,4 +1,4 @@
-package Posts.UtilClasses;
+package UtilClasses;
 
 import java.util.ArrayList;
 import java.util.List;

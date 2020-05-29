@@ -1,8 +1,8 @@
 package ServletsOnPosts;
 
-import Posts.UtilClasses.DateInterval;
-import Posts.UtilClasses.FilterParams;
-import Posts.UtilClasses.JSONDecorator;
+import UtilClasses.DateInterval;
+import UtilClasses.FilterParams;
+import UtilClasses.JSONDecorator;
 import WorkWithDB.WorkWithDB;
 
 import javax.annotation.Resource;

@@ -1,4 +1,4 @@
-package Posts.UtilClasses;
+package UtilClasses;
 
 import java.time.LocalDateTime;
 

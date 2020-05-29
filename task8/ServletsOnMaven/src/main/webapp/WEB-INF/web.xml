@@ -92,21 +92,39 @@
     </filter-mapping>
 
     <servlet>
-        <servlet-name>ServletsOnUsers</servlet-name>
-        <servlet-class>ServletsOnPosts.ServletsOnUsers</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletsOnUsers</servlet-name>
-        <url-pattern>/users</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>TakeLikeServlet</servlet-name>
         <servlet-class>ServletsOnPosts.TakeLikeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TakeLikeServlet</servlet-name>
         <url-pattern>/like</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>ServletsOnPosts.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutService</servlet-name>
+        <servlet-class>ServletsOnPosts.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutService</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignupService</servlet-name>
+        <servlet-class>ServletsOnPosts.SignupServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignupService</servlet-name>
+        <url-pattern>/signup</url-pattern>
     </servlet-mapping>
 
     <servlet>

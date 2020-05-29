@@ -8,7 +8,7 @@
             driverClassName="com.mysql.cj.jdbc.Driver"
             url="jdbc:mysql://localhost:3307/mydb?serverTimezone=UTC"
             username="root"
-            password="ЫЙД_ЗФЫЫЦЩКВ1716002167402фв"
+            password="1716002167402ad"
             validationQuery="select 1"
 
     />
