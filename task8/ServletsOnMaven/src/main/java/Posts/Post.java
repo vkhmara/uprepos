@@ -1,6 +1,6 @@
 package Posts;
 
-import ServletsOnPosts.JSONDecorator;
+import UtilClasses.JSONDecorator;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -108,16 +108,14 @@ public class Post {
         return JSONDecorator.getGson().toJson(this);
     }
 
-    public void takeLike(String authorOfLike) {
+    public int takeLike(String authorOfLike) {
         if (getLikes().contains(authorOfLike)) {
             getLikes().remove(authorOfLike);
+            return -1;
         }
         else {
             getLikes().add(authorOfLike);
+            return 1;
         }
-    }
-
-    public static Post fromJson(String json) {
-        return JSONDecorator.getGson().fromJson(json, Post.class);
     }
 }
