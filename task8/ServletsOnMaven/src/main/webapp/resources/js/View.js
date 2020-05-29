@@ -1,298 +1,21 @@
-class Post {
-	constructor(id, author, createdAt, description, hashTags = [], likes = []) {
-		this.id = id;
-		this.author = author;
-		this.createdAt = createdAt;
-		this.description = description;
-		this.hashTags = hashTags;
-		this.likes = likes;
-	}
-
-	takeLike(idOfAuthorOfLike) {
-		let index = this.likes.indexOf(idOfAuthorOfLike);
-		if (index === -1) {
-			this.likes.push(idOfAuthorOfLike);
-			return 1;
-		} else {
-			this.likes.splice(index, 1);
-			return -1;
-		}
-	}
-
-	hasLike(idOfUser) {
-		return this.likes.indexOf(idOfUser) !== -1;
-	}
-
-	countOfLikes() {
-		return this.likes.length;
-	}
+function fullLS() {
+	localStorage.setItem("Count of posts on feed", JSON.stringify("10"));
+	localStorage.setItem("maxSize", JSON.stringify("41"));
+	localStorage.setItem("filterParams", JSON.stringify(null));
+	localStorage.setItem("username", JSON.stringify(null));
 }
-
-class EditInfo{
-	constructor(description, hashTags = []) {
-		this.description = description;
-		this.hashTags = hashTags;
-	}
-}
-
-class DateInterval {
-	constructor (left, right) {
-		this.left = left;
-		this.right = right;
-	}
-}
-
-class FilterParams {
-	constructor (author, dateInterval, hashTags=[]) {
-		this.author = author;
-		this.dateInterval = dateInterval;
-		this.hashTags = hashTags;
-	}
-
-	validate() {
-		return (this.hashTags.length === 0 || this.hashTags.every(item => item !== "" && item[0]==='#'))
-			&& !isNaN(this.dateInterval.left) && !isNaN(this.dateInterval.right);
-	}
-}
-
-class PostContainer {
-
-	constructor(posts = []) {
-		this._posts = posts;
-	}
-
-	get posts() {
-		return this._posts;
-	}
-
-	set posts(arr) {
-		this._posts = arr;
-	}
-
-	liesInInterval(date, dateInterval) {
-		return dateInterval == null || (dateInterval.left <= date && date <= dateInterval.right);
-	}
-
-	hasAnyTag(hashTagsOfPost, hashTags) {
-		return hashTags.length === 0
-			|| hashTagsOfPost.some(hashTagOfPost => hashTags.includes(hashTagOfPost));
-	}
-
-	compDates(x, y) {
-		return y.createdAt - x.createdAt;
-	}
-
-	isTag(str) {
-		return str[0] === '#';
-	}
-
-	isString(obj) {
-		return typeof obj == 'string';
-	}
-
-	rightDate(date) {
-		return date.getHours() >= 0 && date.getHours() <= 23 &&
-			date.getMinutes() >= 0 && date.getMinutes() <= 59 &&
-			date.getSeconds() >= 0 && date.getSeconds() <= 59;
-	}
-
-	copyPost(post) {
-		let copy = new Post();
-		Object.assign(copy, post);
-		return copy;
-	}
-
-	getPostsByFilter(filterConfig) {
-		if (filterConfig == null) {
-			return this.posts;
-		}
-		return this.posts.filter(element =>
-			(!filterConfig.author || element.author === filterConfig.author) &&
-			(!filterConfig.dateInterval || this.liesInInterval(element.createdAt, filterConfig.dateInterval)) &&
-			(!filterConfig.hashTags || this.hasAnyTag(element.hashTags, filterConfig.hashTags))
-		);
-	}
-
-	getPostsByFilterFromInterval(filterConfig, skip = 0, count = 10) {
-		if (skip < 0 || count <= 0) {
-			return [];
-		}
-		let postsByFilter = this.getPostsByFilter(filterConfig).sort(this.compDates);
-		return postsByFilter.slice(skip, skip + count);
-	}
-
-	getPostsFromInterval(skip = 0, count = 10) {
-		return this.getPostsByFilterFromInterval(null, skip, count);
-	}
-
-	getPost(ID) {
-		return this.posts.find(item => item.id === ID);
-	}
-
-	validatePost(somePost) {
-		return this.isString(somePost.description) &&
-			somePost.description.trim().length > 0 && somePost.description.length < 200 &&
-			this.isString(somePost.author) && somePost.author.length > 0 &&
-			somePost.hashTags.every(this.isTag) &&
-			somePost.hashTags.every(this.isString) && somePost.likes.every(this.isString) &&
-			somePost.createdAt instanceof Date && this.rightDate(somePost.createdAt);
-	}
-
-	addPost(somePost) {
-		if (!this.validatePost(somePost)) {
-			return false;
-		}
-		this.posts.push(this.copyPost(somePost));
-		return true;
-	}
-
-	editPost(ID, edit) {
-		let index = this.posts.findIndex(item => item.id === ID);
-
-		if (index === -1) {
-			return false;
-		}
-
-		let edPost = this.copyPost(this.posts[index]);
-
-		if (edit.description) {
-			edPost.description = edit.description.trim();
-		}
-
-		if (edit.hashTags) {
-			edPost.hashTags = [];
-			edit.hashTags.forEach(item => edPost.hashTags.push(item));
-		}
-
-		if (!this.validatePost(edPost)) {
-			return false;
-		}
-
-		this.posts[index] = edPost;
-		return true;
-	}
-
-	removePost(ID) {
-		let index = this.posts.findIndex(item => item.id === ID);
-
-		if (index === -1) {
-			return false;
-		}
-
-		this.posts.splice(index, 1);
-		return true;
-	}
-
-	takeLike(ID, idOfAuthorOfLike) {
-		return this.getPost(ID).takeLike(idOfAuthorOfLike);
-	}
-
-	size() {
-		return this.posts.length;
-	}
-}
-
-class User {
-	constructor(username, password) {
-		this.username = username;
-		this.password = password;
-	}
-}
-
-let users = new Map();
-let idsOfPosts = [];
-let postsArray = [];
-let idsOfCurrentFeed = [];
-
-/*(function fullingStorage() {
-	postsArray = [
-		new Post("1", "incredible2", new Date('2020-06-24T22:47:41'), "Hello"),
-		new Post("2", "incredible6", new Date('2020-09-22T06:18:04'), "Hello"),
-		new Post("3", "incredible12", new Date('2020-02-08T01:05:05'), "Hello"),
-		new Post("4", "incredible20", new Date('2020-01-14T14:55:11'), "Hello"),
-		new Post("5", "incredible30", new Date('2020-05-09T14:24:51'), "Hello"),
-		new Post("6", "incredible42", new Date('2020-12-28T20:21:22'), "Helloo"),
-		new Post("7", "incredible3", new Date('2020-10-26T11:06:47'), "Hello"),
-		new Post("8", "incredible19", new Date('2020-07-13T19:47:52'), "Hello, it's me."),
-		new Post("9", "incredible37", new Date('2020-10-29T02:51:23'), "Hello"),
-		new Post("10", "incredible4", new Date('2020-05-08T07:21:44'), "Hello"),
-		new Post("11", "incredible26", new Date('2020-10-17T22:44:47'), "Hello"),
-		new Post("12", "incredible50", new Date('2020-11-09T21:23:19'), "Hello"),
-		new Post("13", "incredible23", new Date('2020-01-16T14:35:16'), "Hello"),
-		new Post("14", "incredible51", new Date('2020-05-09T14:40:46'), "Hello"),
-		new Post("15", "incredible28", new Date('2020-11-02T02:45:26'), "Hello"),
-		new Post("16", "incredible7", new Date('2020-09-05T21:06:50'), "Hello"),
-		new Post("17", "incredible41", new Date('2020-01-03T12:23:09'), "Hello"),
-		new Post("18", "incredible24", new Date('2020-05-12T08:46:20'), "Hello"),
-		new Post("19", "incredible9", new Date('2020-06-14T02:39:24'), "Hello"),
-		new Post("20", "incredible49", new Date('2020-06-20T18:38:58'), "Hello"),
-		new Post("21", "incredible4", new Date('2020-08-16T00:27:58'), "Hello182", ["#hello"]),
-		new Post("22", "incredible4", new Date('2020-10-13T00:22:08'), "Hello707", ["#hello"]),
-		new Post("23", "incredible4", new Date('2020-11-10T11:57:09'), "Hello46"),
-		new Post("24", "incredible4", new Date('2020-12-07T10:14:22'), "Hello111"),
-		new Post("25", "incredible4", new Date('2020-12-15T02:38:40'), "Hello481"),
-		new Post("26", "incredible4", new Date('2020-01-05T17:41:38'), "Hello211"),
-		new Post("27", "incredible4", new Date('2020-06-07T13:53:03'), "Hello154", ["#hello", "#hai"]),
-		new Post("28", "incredible4", new Date('2020-01-23T12:15:11'), "Hello564"),
-		new Post("29", "incredible4", new Date('2020-07-05T20:30:55'), "Hello931"),
-		new Post("30", "incredible4", new Date('2020-04-25T00:08:16'), "Hello990"),
-		new Post("31", "incredible5", new Date('2020-07-10T09:20:03'), "Hello633"),
-		new Post("32", "incredible5", new Date('2020-09-27T18:55:54'), "Hello468"),
-		new Post("33", "incredible5", new Date('2020-12-27T12:39:01'), "Hello530", ["#hai"]),
-		new Post("34", "incredible5", new Date('2020-12-20T18:54:23'), "Hello927", ["#ni hao"]),
-		new Post("35", "incredible5", new Date('2020-07-19T11:25:13'), "Hello549"),
-		new Post("36", "incredible5", new Date('2020-10-26T04:03:24'), "Hello616"),
-		new Post("37", "incredible5", new Date('2020-12-23T17:20:30'), "Hello682"),
-		new Post("38", "incredible5", new Date('2020-07-28T00:46:26'), "Hello208"),
-		new Post("39", "incredible5", new Date('2020-10-22T02:59:26'), "Hello940"),
-		new Post("40", "incredible5", new Date('2020-03-15T21:40:13'), "Hello999")
-	];
-	postsArray.forEach(item => {
-		idsOfPosts.push(item.id);
-		localStorage.setItem("Post with id=" + item.id, JSON.stringify(item));
-	});
-	localStorage.setItem("IDs of posts", JSON.stringify(idsOfPosts));
-	postsArray.forEach(x => {
-		if (!users.has(x.author)) {
-			users.set(x.author, new User(x.author, x.author));
-		}
-	});
-	localStorage.setItem("Users", JSON.stringify(Array.from(users)));
-	localStorage.setItem("Current user", JSON.stringify(null));
-	localStorage.setItem("Count of posts in feed", "10");
-	localStorage.setItem("IDs of current feed", JSON.stringify(idsOfPosts));
-})();*/
-
-function loadPostFromStorage(id) {
-	let post = JSON.parse(localStorage.getItem("Post with id=" + id));
-	return new Post(post.id, post.author, new Date(post.createdAt), post.description, post.hashTags, post.likes)
-}
-
-(function loadInfoFromStorage() {
-	idsOfPosts = JSON.parse(localStorage.getItem("IDs of posts"));
-	idsOfCurrentFeed = JSON.parse(localStorage.getItem("IDs of current feed"));
-	idsOfPosts.forEach(id => postsArray.push(loadPostFromStorage(id)));
-	JSON.parse(localStorage.getItem("Users")).forEach(item => users.set(item[0], new User(item[1].username, item[1].password)));
-})();
-
-let allPosts = new PostContainer(postsArray);
 
 class ViewPosts {
 
 	constructor() {
-		this.posts = new PostContainer();
-		idsOfCurrentFeed.forEach(id => {
-			this.posts.addPost(allPosts.getPost(id));
-		});
-		this.count = parseInt(JSON.parse(localStorage.getItem("Count of posts in feed")));
-		let user = JSON.parse(localStorage.getItem("Current user"));
-		if (user == null) {
-			this.user = null;
+		let filParams = JSON.parse(localStorage.getItem("filterParams"));
+		this.filterParams = filParams === null ? null : new FilterParams();
+		if (this.filterParams !== null) {
+			this.filterParams.fromObject(filParams);
 		}
-		else {
-			this.user = new User(user.username, user.password);
-		}
-		this.newUser = new User(null, null);
+		this.maxSize = parseInt(JSON.parse(localStorage.getItem("maxSize")));
+		this.count = parseInt(JSON.parse(localStorage.getItem("Count of posts on feed")));
+		this.user = JSON.parse(localStorage.getItem("username"));
 		this.initElems();
 		this.viewHeader();
 		this.viewLastFeed();
@@ -316,11 +39,11 @@ class ViewPosts {
 
      <div class="date_and_time">
          <div class="date">
-           ${ViewPosts.getDateForPost(date)}
+           ${this.getDateForPost(date)}
          </div>
 
          <div class="time">
-           ${ViewPosts.getTimeForPost(date)}
+           ${this.getTimeForPost(date)}
          </div>
       </div>
 
@@ -333,7 +56,7 @@ class ViewPosts {
    </textarea>
 
    <div class="tags">
-     ${ViewPosts.hashTagsInNewLines(post.hashTags)}
+     ${this.hashTagsInNewLines(post.hashTags)}
    </div>
 
    <div class="likes">
@@ -345,20 +68,20 @@ class ViewPosts {
 
 		let likeButton = document.createElement("button");
 		likeButton.className = "imglike";
-		if (this.user !== null && post.hasLike(this.user.username)) {
+		if (this.user !== null && post.hasLike(this.user)) {
 			likeButton.innerHTML = `<img src="resources/images/Like.jpg" width="100%" height="100%">`;
+		} else {
+			likeButton.innerHTML = `<img src="resources/images/No like.png" width="100%" height="100%">`;
 		}
-		else {
-			likeButton.innerHTML=`<img src="resources/images/No like.png" width="100%" height="100%">`;
-		}
-		likeButton.addEventListener("click", ()=>{
+		likeButton.addEventListener("click", async () => {
 			if (this.user == null) {
 				document.body.appendChild(this.unableLikeWindow);
 				return;
 			}
 			let likesField = likeButton.parentElement;
 			let id = likesField.parentElement.getAttribute("id");
-			let c = this.takeLike(id, this.user.username);
+			let c;
+			await this.takeLike(id, this.user).then(data => c = data);
 			let countOfLikesField = likesField.getElementsByClassName("count_of_likes")[0];
 			countOfLikesField.innerHTML = parseInt(countOfLikesField.innerHTML) + c + "";
 			if (c === 1) {
@@ -382,18 +105,18 @@ class ViewPosts {
 				 Delete
 			 </button>
 		 </div>`;
-			newPost.getElementsByClassName("edit")[0].addEventListener("click", ()=>{
+			newPost.getElementsByClassName("edit")[0].addEventListener("click", () => {
 				this.feed.innerHTML = "";
 				this.idToEdit = post.id;
 				let fields = this.editPostWindow.getElementsByTagName("textarea");
 				fields[0].value = post.description;
 				fields[1].value = "";
-				post.hashTags.forEach(item=> {
+				post.hashTags.forEach(item => {
 					fields[1].value += item + "\n";
 				});
 				this.feed.appendChild(this.editPostWindow);
 			});
-			newPost.getElementsByClassName("delete")[0].addEventListener("click", ()=>{
+			newPost.getElementsByClassName("delete")[0].addEventListener("click", () => {
 				this.postToRemove = newPost;
 				document.body.appendChild(this.deletePostWindow);
 			});
@@ -402,14 +125,13 @@ class ViewPosts {
 		this.feed.insertBefore(newPost, this.nextPostsButton);
 	}
 
-	changeContainer(arrayOfPosts) {
-		this.posts.posts = arrayOfPosts;
-		idsOfCurrentFeed = [];
-		arrayOfPosts.forEach(post=>idsOfCurrentFeed.push(post.id));
-		localStorage.setItem("IDs of current feed", JSON.stringify(idsOfCurrentFeed));
+	changeMaxSize() {
+		return sendGetRequest("/size?" + this.urlForFilter(this.filterParams))
+			.then(data => this.maxSize = parseInt(data))
+			.then(() => localStorage.setItem("maxSize", JSON.stringify(this.maxSize)));
 	}
 
-	static getDateForPost(date) {
+	getDateForPost(date) {
 		let str = "";
 		let num = date.getDate();
 		if (num < 10) {
@@ -424,7 +146,7 @@ class ViewPosts {
 		return str + date.getFullYear();
 	}
 
-	static getTimeForPost(date) {
+	getTimeForPost(date) {
 		let str = "";
 		let num = date.getHours();
 		if (num <= 9) {
@@ -438,7 +160,7 @@ class ViewPosts {
 		return str + date.getMinutes();
 	}
 
-	static hashTagsInNewLines(hashTags) {
+	hashTagsInNewLines(hashTags) {
 		if (hashTags.length !== 0) {
 			return hashTags.reduce((acc, curr) => acc + curr + "<br>", "");
 		}
@@ -463,25 +185,21 @@ NO
 </div>`;
 		this.deletePostWindow
 			.getElementsByTagName("button")[0]
-			.addEventListener("click", ()=>{
+			.addEventListener("click", () => {
 				this.feed.removeChild(this.postToRemove);
 				document.body.removeChild(this.deletePostWindow);
 				this.count -= 1;
-				let id = this.postToRemove.getAttribute("id");
-				this.posts.removePost(id);
-				allPosts.removePost(id);
+				localStorage.setItem("Count of posts on feed", JSON.stringify(this.count));
+				this.maxSize -= 1;
+				localStorage.setItem("maxSize", JSON.stringify(this.maxSize));
+				sendDeleteRequest("/tweets", this.postToRemove.getAttribute("id"));
 				if (this.count === 0) {
 					this.feed.appendChild(this.noPostsInscription);
 				}
-				localStorage.removeItem("Post with id=" + id);
-				idsOfCurrentFeed = idsOfCurrentFeed.filter(item=>item !== id);
-				localStorage.setItem("IDs of current feed", JSON.stringify(idsOfCurrentFeed));
-				idsOfPosts = idsOfPosts.filter(item=>item !== id);
-				localStorage.setItem("IDs of posts", JSON.stringify(idsOfPosts));
 			});
 		this.deletePostWindow
 			.getElementsByTagName("button")[1]
-			.addEventListener("click", ()=>document.body.removeChild(this.deletePostWindow));
+			.addEventListener("click", () => document.body.removeChild(this.deletePostWindow));
 	}
 
 	initEditPostWindow() {
@@ -504,25 +222,31 @@ Edit the hashTags
 <input class="button_cancel" type="submit" value="Cancel">
 </div>`;
 		let buttons = this.editPostWindow.getElementsByTagName("input");
-		buttons[0].addEventListener("click", ()=> {
+		buttons[0].addEventListener("click", async () => {
 			let editFields = this.editPostWindow.getElementsByTagName("textarea");
 			let tags = editFields[1].value.split(/[\s\n\t\r]/);
-			tags = tags.filter(item=>item !== "");
+			tags = tags.filter(item => item !== "");
 			let editInfo = new EditInfo(editFields[0].value, tags);
-			if (!allPosts.editPost(this.idToEdit, editInfo)) {
-				this.viewErrorWindow("Incorrect data");
+			let resp = "";
+			await sendPostRequest("/edit", {"id": this.idToEdit, "editInfo": editInfo})
+				.then(data => resp = data);
+			if (resp === "Post was not edited") {
+				this.viewErrorWindow("Incorrect data", function () {
+					view.feed.innerHTML = "";
+					view.feed.appendChild(view.editPostWindow);
+				});
 				return;
 			}
-			localStorage.setItem("Post with id=" + this.idToEdit, JSON.stringify(allPosts.getPost(this.idToEdit)));
 			editFields[0].value = "";
 			editFields[1].value = "";
 			this.viewMainPage();
 		});
-		buttons[1].addEventListener("click", ()=> {
+		buttons[1].addEventListener("click", () => {
 			let editFields = this.editPostWindow.getElementsByTagName("textarea");
 			editFields[0].value = "";
 			editFields[1].value = "";
 			this.viewLastFeed();
+			this.feed.removeChild(this.editPostWindow);
 		});
 	}
 
@@ -564,7 +288,7 @@ Back
 </div>`;
 		this.errorWindow
 			.getElementsByTagName("button")[0]
-			.addEventListener("click", ()=>this.viewMainPage());
+			.addEventListener("click", () => this.viewMainPage());
 	}
 
 	initFrame() {
@@ -579,7 +303,7 @@ Back
 		this.loginButton = document.createElement("button");
 		this.loginButton.className = "login";
 		this.loginButton.innerHTML = "log in";
-		this.loginButton.addEventListener("click", ()=>{
+		this.loginButton.addEventListener("click", () => {
 			this.viewWindowToLogin();
 		});
 	}
@@ -593,7 +317,7 @@ Back
 Input the login
 <input type="text" size="20" style="width=200px;">
 Input the password
-<input type="text" size="20" style="width=200px;">
+<input type="password" size="20" style="width=200px;">
 </div>`;
 		let loginButtons = document.createElement("div");
 		loginButtons.className = "buttons_field";
@@ -602,29 +326,32 @@ Input the password
 		loginWindowOKButton.className = "button_OK";
 		loginWindowOKButton.setAttribute("type", "submit");
 		loginWindowOKButton.setAttribute("value", "OK");
-		loginWindowOKButton.addEventListener("click", ()=>{
+		loginWindowOKButton.addEventListener("click", async () => {
 			let fields = this.loginWindow.getElementsByTagName("input");
 			let login = fields[0].value;
 			let password = fields[1].value;
-			let user = users.get(login);
-			if (user === undefined) {
-				this.viewErrorWindow("No such login. Try again");
-				fields[0].value = "";
-				fields[1].value = "";
+			if (login === "" || password === "") {
+				this.viewErrorWindow("The login or password field is empty. Try again", function () {
+					view.viewWindowToLogin();
+				});
+				fields[0].value = fields[1].value = "";
 				return;
 			}
-			else if (user.password !== password) {
-				this.viewErrorWindow("Incorrect password. Try again");
-				fields[0].value = "";
-				fields[1].value = "";
+			let mess = "";
+			await sendPostRequest("/login", {"username":login, "password":window.btoa(password)})
+				.then(data => mess = data);
+			if (mess !== "Success") {
+				this.viewErrorWindow("Incorrect login or password. Try again", function () {
+					view.viewWindowToLogin();
+				});
+				fields[0].value = fields[1].value = "";
 				return;
 			} else {
 				this.feed.innerHTML = "";
-				this.user = user;
+				this.user = login;
 				localStorage.setItem("Current user", JSON.stringify(this.user));
 			}
-			fields[0].value = "";
-			fields[1].value = "";
+			fields[0].value = fields[1].value = "";
 			this.viewHeader();
 			this.viewLastFeed();
 		});
@@ -634,7 +361,7 @@ Input the password
 		loginWindowCancelButton.className = "button_cancel";
 		loginWindowCancelButton.setAttribute("type", "submit");
 		loginWindowCancelButton.setAttribute("value", "Cancel");
-		loginWindowCancelButton.addEventListener("click", ()=>{
+		loginWindowCancelButton.addEventListener("click", () => {
 			this.feed.innerHTML = "";
 			this.viewLastFeed();
 		});
@@ -647,28 +374,35 @@ Input the password
 		this.logoutButton = document.createElement("button");
 		this.logoutButton.className = "logout";
 		this.logoutButton.innerHTML = "log out";
-		this.logoutButton.addEventListener("click", ()=>{
+		this.logoutButton.addEventListener("click", () => {
 			this.user = null;
 			localStorage.setItem("Current user", JSON.stringify(this.user));
+			sendGetRequest("/logout");
 			this.viewHeader();
 			let postsOfFeed = this.feed.getElementsByClassName("post");
 			for (let i = 0; i < postsOfFeed.length; i++) {
 				postsOfFeed[i].querySelector(".edit_block").innerHTML = "";
-				postsOfFeed[i].getElementsByTagName("img")[0].setAttribute("src", "resources/images/No like.png");
+				postsOfFeed[i].getElementsByTagName("img")[0]
+					.setAttribute("src", "resources/images/No like.png");
 			}
 		});
 	}
 
 	initMainButton() {
 		this.mainButton = document.getElementById("main");
-		this.mainButton.addEventListener("click", ()=>this.viewMainPage());
+		this.mainButton.addEventListener("click", () => {
+			this.filterParams = null;
+			localStorage.setItem("filterParams", JSON.stringify(this.filterParams));
+			this.changeMaxSize()
+				.then(() => this.viewMainFeed());
+		});
 	}
 
 	initNextPostsButton() {
 		this.nextPostsButton = document.createElement("button");
 		this.nextPostsButton.className = "next_posts";
 		this.nextPostsButton.innerHTML = "next<br>posts";
-		this.nextPostsButton.addEventListener("click", ()=>this.viewNextPosts());
+		this.nextPostsButton.addEventListener("click", () => this.viewNextPosts());
 	}
 
 	initNoPostsInscription() {
@@ -681,7 +415,7 @@ Input the password
 		this.publishPostButton = document.createElement("button");
 		this.publishPostButton.className = "publish_post";
 		this.publishPostButton.innerHTML = "publish post";
-		this.publishPostButton.addEventListener("click", ()=>{
+		this.publishPostButton.addEventListener("click", () => {
 			this.feed.innerHTML = "";
 			this.feed.appendChild(this.publishPostWindow);
 		});
@@ -708,24 +442,25 @@ Input the hashTags
 </div>`;
 
 		let buttons = this.publishPostWindow.getElementsByTagName("input");
-		buttons[0].addEventListener("click", ()=> {
+		buttons[0].addEventListener("click", async () => {
 			let editFields = this.publishPostWindow.getElementsByTagName("textarea");
 			let tags = editFields[1].value.split(/[\s\n\t\r]/);
-			tags = tags.filter(item=>item !== "");
-			let newPost = new Post(parseInt(idsOfPosts[idsOfPosts.length - 1]) + 1 + "", this.user.username, new Date(), editFields[0].value, tags);
-			if (!allPosts.addPost(newPost)) {
-				this.viewErrorWindow("Incorrect data");
+			tags = tags.filter(item => item !== "");
+			let newPost = new Post("", this.user.username, new Date(), editFields[0].value, tags);
+			let respText = "";
+			await sendPostRequest("/tweets", newPost)
+				.then(data => respText = data);
+			if (respText === "Post was not added.") {
+				this.viewErrorWindow("Incorrect data", function () {
+					view.viewSearchPostsWindow();
+				});
 				return;
 			}
-			this.posts.addPost(newPost);
-			idsOfPosts.push(newPost.id);
-			localStorage.setItem("IDs of posts", JSON.stringify(idsOfPosts));
-			localStorage.setItem("Post with id=" + newPost.id, JSON.stringify(newPost));
 			editFields[0].value = "";
 			editFields[1].value = "";
 			this.viewMainPage();
 		});
-		buttons[1].addEventListener("click", ()=> {
+		buttons[1].addEventListener("click", () => {
 			let editFields = this.publishPostWindow.getElementsByTagName("textarea");
 			this.feed.removeChild(this.publishPostWindow);
 			this.viewLastFeed();
@@ -736,7 +471,7 @@ Input the hashTags
 
 	initSearchButton() {
 		this.searchButton = document.getElementById("search");
-		this.searchButton.addEventListener("click", ()=>{
+		this.searchButton.addEventListener("click", () => {
 			this.feed.innerHTML = "";
 			this.feed.appendChild(this.searchPostsWindow);
 		});
@@ -768,7 +503,7 @@ Input the interval:
 </div>`;
 		this.searchPostsWindow
 			.getElementsByClassName("button_OK")[0]
-			.addEventListener("click", ()=>{
+			.addEventListener("click", () => {
 				let fieldsTxtArea = this.searchPostsWindow
 					.getElementsByTagName("textarea");
 				let tags = fieldsTxtArea[0].value.toString().split(/[\n\r\t\s]/);
@@ -777,8 +512,8 @@ Input the interval:
 				let fieldsInput = this.searchPostsWindow
 					.getElementsByTagName("input");
 				if (fieldsInput[0].validity.badInput || fieldsInput[0].validity.badInput
-					|| fieldsInput[0].validity.badInput||fieldsInput[0].validity.badInput) {
-					this.viewErrorWindow("Incorrect data", function(){
+					|| fieldsInput[0].validity.badInput || fieldsInput[0].validity.badInput) {
+					this.viewErrorWindow("Incorrect data", function () {
 						view.viewSearchPostsWindow();
 					});
 					return;
@@ -793,18 +528,20 @@ Input the interval:
 				}
 				let filterParams = new FilterParams(author, new DateInterval(new Date(startDate), new Date(endDate)), tags);
 				if (!filterParams.validate()) {
-					this.viewErrorWindow("Incorrect data", function(){
+					this.viewErrorWindow("Incorrect data", function () {
 						view.viewSearchPostsWindow();
 					});
 					return;
 				}
-				this.changeContainer(allPosts.getPostsByFilter(filterParams));
-				this.viewMainFeed();
+				this.filterParams = filterParams;
+				localStorage.setItem("filterParams", JSON.stringify(this.filterParams));
+				this.changeMaxSize()
+					.then(() => this.viewMainFeed());
 			});
 
 		this.searchPostsWindow
 			.getElementsByClassName("button_cancel")[0]
-			.addEventListener("click", ()=> {
+			.addEventListener("click", () => {
 				this.feed.removeChild(this.searchPostsWindow);
 				this.viewMainPage();
 			});
@@ -814,9 +551,9 @@ Input the interval:
 		this.signupButton = document.createElement("button");
 		this.signupButton.className = "sign_up";
 		this.signupButton.innerHTML = "sign up";
-		this.signupButton.addEventListener("click", () =>{
+		this.signupButton.addEventListener("click", () => {
 			this.feed.innerHTML = "";
-			this.signupWindow.getElementsByTagName("h")[0].innerHTML="Input login (6-20 chars)";
+			this.signupWindow.getElementsByTagName("h")[0].innerHTML = "Input login (6-20 chars)";
 			this.levelOfSignup = 0;
 			this.feed.appendChild(this.signupWindow);
 		});
@@ -835,53 +572,66 @@ Input the interval:
 <input class="button_OK" type="submit" value="OK">
 <input class="button_cancel" type="submit" value="Cancel">
 </div>`;
-		this.signupWindow.querySelector(".button_OK").addEventListener("click", ()=>{
+		this.signupWindow.querySelector(".button_OK").addEventListener("click", async () => {
 			let value = this.signupWindow.getElementsByTagName("input")[0].value;
 			switch (this.levelOfSignup) {
 				case 0: {
 					if (value.length < 6 || value.length > 20) {
-						this.viewErrorWindow("Incorrect login", function(){view.viewSignupWindow();});
-					} else if (users.has(value)) {
-						this.viewErrorWindow("There is a user with the same login", function(){view.viewSignupWindow();});
+						this.viewErrorWindow("Incorrect login", function () {
+							view.viewSignupWindow();
+						});
 					} else {
-						this.newUser.username = value;
-						this.signupWindow.getElementsByTagName("h")[0].innerHTML = "Input the password (6-20 chars)";
-						this.levelOfSignup += 1;
+						let mess;
+						await sendGetRequest("/signup", "username", value)
+							.then(data => mess = data);
+						if (mess !== "No such user") {
+							this.viewErrorWindow("There is a user with the same login", function () {
+								view.viewSignupWindow();
+							});
+						} else {
+							this.newUser = value;
+							this.signupWindow.getElementsByTagName("h")[0].innerHTML = "Input the password (6-20 chars)";
+							this.signupWindow.getElementsByTagName("input")[0].setAttribute("type", "password");
+							this.levelOfSignup += 1;
+						}
 					}
 					break;
 				}
 				case 1: {
 					if (value.length < 6 || value.length > 20) {
-						this.viewErrorWindow("Incorrect password", function(){view.viewSignupWindow();});
+						this.viewErrorWindow("Incorrect password", function () {
+							view.viewSignupWindow();
+						});
 					} else {
-						this.newUser.password = value;
+						this.newPassword = window.btoa(value);
 						this.signupWindow.getElementsByTagName("h")[0].innerHTML = "Input the password again";
 						this.levelOfSignup += 1;
 					}
 					break;
 				}
 				case 2: {
-					if (this.newUser.password !== value) {
-						this.viewErrorWindow("Passwords are not equal", function(){view.viewSignupWindow();});
+					if (this.newPassword !== window.btoa(value)) {
+						this.viewErrorWindow("Passwords are not equal", function () {
+							view.viewSignupWindow();
+						});
 					} else {
-						users.set(this.newUser.username, this.newUser);
-						localStorage.setItem("Users", JSON.stringify(Array.from(users)));
-						this.feed.removeChild(this.signupWindow);
-						this.user = new User(this.newUser.username, this.newUser.password);
+						await sendPostRequest("/signup", {username:this.newUser, password:this.newPassword});
+						this.newPassword = null;
+						this.user = this.newUser;
 						localStorage.setItem("Current user", JSON.stringify(this.user));
+						this.feed.removeChild(this.signupWindow);
 						this.viewHeader();
 						this.viewLastFeed();
-						this.levelOfSignup = -1;
 					}
 					break;
 				}
-				default:{
+				default: {
 
 				}
 			}
 			this.signupWindow.getElementsByTagName("input")[0].value = "";
 		});
-		this.signupWindow.querySelector(".button_cancel").addEventListener("click", ()=>{
+		this.signupWindow.querySelector(".button_cancel").addEventListener("click", () => {
 			this.feed.innerHTML = "";
 			this.viewLastFeed();
 		});
@@ -902,14 +652,23 @@ OK
 </div>`;
 		this.unableLikeWindow
 			.getElementsByTagName("button")[0]
-			.addEventListener("click", ()=>document.body.removeChild(this.unableLikeWindow));
+			.addEventListener("click", () => document.body.removeChild(this.unableLikeWindow));
 	}
 
-	takeLike(idOfPost, nameOfUser) {
-		let post = allPosts.getPost(idOfPost);
-		let c = post.takeLike(nameOfUser);
-		localStorage.setItem("Post with id=" + idOfPost, JSON.stringify(post));
+	async takeLike(idOfPost, username) {
+		let c = 0;
+		await sendPostRequest("/like", {
+			idOfPost: idOfPost,
+			username: username
+		}).then(data => c = parseInt(data));
 		return c;
+	}
+
+	urlForFilter(filterParams) {
+		return filterParams == null ? `` : `&author=${this.filterParams.author}
+			&left=${this.filterParams.dateInterval.left.getTime()}
+			&right=${this.filterParams.dateInterval.right.getTime()}
+			&hashTags=${this.filterParams.hashTags.reduce((acc, curr) => acc + curr.substring(1) + " ", "")}`;
 	}
 
 	viewErrorWindow(errorText, func) {
@@ -934,25 +693,29 @@ OK
 			this.leftBlock.appendChild(this.publishPostButton);
 			this.rightBlock.innerHTML = `
 				<span class="profile_name">
-					${this.user.username}
+					${this.user}
 				</span>`;
 			this.rightBlock.appendChild(this.logoutButton);
 		}
 	}
 
-	viewLastFeed() {
-		this.viewPostsFromInterval(0, this.count);
+	async viewLastFeed() {
+		await this.viewPostsFromInterval(0, this.count);
+		if (this.count === this.maxSize) {
+			this.feed.removeChild(this.nextPostsButton);
+		}
 	}
 
 	viewMainPage() {
-		this.changeContainer(postsArray);
+		this.filterParams = null;
+		this.changeMaxSize();
 		this.viewMainFeed();
 	}
 
 	viewMainFeed() {
 		this.feed.innerHTML = "";
 		this.count = 0;
-		if (this.posts.size() === 0) {
+		if (this.maxSize === 0) {
 			this.feed.appendChild(this.noPostsInscription);
 		} else {
 			this.feed.appendChild(this.nextPostsButton);
@@ -960,26 +723,25 @@ OK
 		}
 	}
 
-	viewNextPosts() {
-		let postsToView = this.posts.getPostsFromInterval(this.count, 10);
-		postsToView.forEach(item => this.addPostToFeed(item, this.feed));
+	async viewNextPosts() {
+		await this.viewPostsFromInterval(this.count, 10);
 		this.count += 10;
-		if (this.count >= this.posts.size()) {
+		if (this.count >= this.maxSize) {
 			this.feed.removeChild(this.nextPostsButton);
-			this.count = this.posts.size();
+			this.count = this.maxSize;
 		}
-		localStorage.setItem("Count of posts in feed", this.count + "");
+		localStorage.setItem("Count of posts on feed", this.count + "");
 	}
 
-	viewPostsFromInterval(skip, count) {
-		let postsToView = this.posts.getPostsFromInterval(skip, count);
+	async viewPostsFromInterval(skip, count) {
+		let postsToView = [];
+		let url = `/tweets/search?skip=${skip}&count=${count}` + this.urlForFilter(this.filterParams);
+		await fetch(url).then(resp => resp.json()).then(data => postsToView = data.map(item => new Post().fromJSON(item)));
+
 		if (this.feed.querySelector(".next_posts") == null) {
 			this.feed.appendChild(this.nextPostsButton);
 		}
 		postsToView.forEach(item => this.addPostToFeed(item));
-		if (this.count >= this.posts.size()) {
-			this.feed.removeChild(this.nextPostsButton);
-		}
 	}
 
 	viewSearchPostsWindow() {
@@ -993,9 +755,8 @@ OK
 	}
 
 	viewWindowToLogin() {
-		this.feed.innerHTML="";
+		this.feed.innerHTML = "";
 		this.feed.appendChild(this.loginWindow);
 	}
 }
-
-view = new ViewPosts();
+let view = new ViewPosts();

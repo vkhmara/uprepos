@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<Context antiJARLocking="true" path="/">
+    <Resource
+            name="jdbc/mydb"
+            auth="Container"
+            type="javax.sql.DataSource"
+            driverClassName="com.mysql.cj.jdbc.Driver"
+            url="jdbc:mysql://localhost:3307/mydb?serverTimezone=UTC"
+            username="root"
+            password="1716002167402ad"
+            validationQuery="select 1"
+
+    />
+</Context>
